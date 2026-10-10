@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="User Flow" id="user-flow">
-        <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1900" pageHeight="1050" math="0" shadow="0">
+        <mxGraphModel dx="1921" dy="783" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1050" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -175,7 +175,7 @@
         </mxGraphModel>
     </diagram>
     <diagram name="Use Case" id="use-case">
-        <mxGraphModel dx="1172" dy="500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1050" math="0" shadow="0">
+        <mxGraphModel dx="1236" dy="716" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1050" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -207,7 +207,7 @@
                     <mxGeometry height="50" width="200" x="250" y="370" as="geometry"/>
                 </mxCell>
                 <mxCell id="c10" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffffff;strokeColor=#333333;" value="ยกเลิกออเดอร์" vertex="1">
-                    <mxGeometry height="50" width="200" x="330" y="470" as="geometry"/>
+                    <mxGeometry height="50" width="200" x="400" y="470" as="geometry"/>
                 </mxCell>
                 <mxCell id="c11" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffffff;strokeColor=#333333;" value="ออกเลขคิว (อัตโนมัติ)" vertex="1">
                     <mxGeometry height="50" width="200" x="570" y="120" as="geometry"/>
@@ -242,12 +242,8 @@
                 <mxCell id="c21" edge="1" parent="1" source="c2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=11;endArrow=none;edgeStyle=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="c9" value="">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="c22" edge="1" parent="1" source="c2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=11;endArrow=none;edgeStyle=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="c10" value="">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="120" y="495"/>
-                        </Array>
-                    </mxGeometry>
+                <mxCell id="c22" edge="1" parent="1" source="c2" style="rounded=0;html=1;endArrow=block;endFill=1;fontSize=11;endArrow=none;edgeStyle=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="c10" value="">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="c23" edge="1" parent="1" source="c3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=11;endArrow=none;edgeStyle=none;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" target="c12" value="">
                     <mxGeometry relative="1" as="geometry"/>
@@ -274,7 +270,7 @@
         </mxGraphModel>
     </diagram>
     <diagram name="System Architecture" id="system-architecture">
-        <mxGraphModel dx="1104" dy="471" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1050" math="0" shadow="0">
+        <mxGraphModel dx="1236" dy="716" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1050" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
