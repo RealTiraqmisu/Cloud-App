@@ -175,7 +175,7 @@
         </mxGraphModel>
     </diagram>
     <diagram name="Use Case" id="use-case">
-        <mxGraphModel dx="1236" dy="716" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1050" math="0" shadow="0">
+        <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1900" pageHeight="1050" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -270,7 +270,7 @@
         </mxGraphModel>
     </diagram>
     <diagram name="System Architecture" id="system-architecture">
-        <mxGraphModel dx="1236" dy="716" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1050" math="0" shadow="0">
+        <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1900" pageHeight="1050" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -425,6 +425,172 @@
                         <mxPoint x="200" y="650" as="sourcePoint"/>
                         <mxPoint x="1490" y="440" as="targetPoint"/>
                     </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram name="System Architecture (Amplify)" id="system-architecture-amplify">
+        <mxGraphModel dx="1695" dy="2114" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1050" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="c1" parent="1" style="points=[];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=13;fontStyle=1;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_aws_cloud_alt;strokeColor=#232F3E;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#232F3E;dashed=0;" value="AWS Cloud (us-east-1) — ทุก Lambda ใช้ LabRole" vertex="1">
+                    <mxGeometry height="920" width="1300" x="160" y="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="c2" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fontSize=13;fontStyle=1;" value="ลูกค้า / ครัว /&lt;br&gt;แอดมิน" vertex="1">
+                    <mxGeometry height="70" width="40" x="50" y="420" as="geometry"/>
+                </mxCell>
+                <mxCell id="c4" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;fillColor=#E7157B;" value="API Gateway" vertex="1">
+                    <mxGeometry height="60" width="60" x="250" y="420" as="geometry"/>
+                </mxCell>
+                <mxCell id="c5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=#FFF8F0;strokeColor=#ED7100;verticalAlign=top;fontStyle=1;fontSize=13;" value="Lambda: เมนู" vertex="1">
+                    <mxGeometry height="220" width="300" x="420" y="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="c6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ED7100;align=left;spacingLeft=10;fontSize=12;" value="&lt;b&gt;getUploadUrl&lt;/b&gt; — ขอลิงก์อัปรูป&lt;br&gt;&lt;font color=&quot;#666666&quot;&gt;POST /menu/upload-url&lt;/font&gt;" vertex="1">
+                    <mxGeometry height="50" width="270" x="435" y="215" as="geometry"/>
+                </mxCell>
+                <mxCell id="c7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ED7100;align=left;spacingLeft=10;fontSize=12;" value="&lt;b&gt;listMenu&lt;/b&gt; — ดูเมนู&lt;br&gt;&lt;font color=&quot;#666666&quot;&gt;GET /menu&lt;/font&gt;" vertex="1">
+                    <mxGeometry height="50" width="270" x="435" y="275" as="geometry"/>
+                </mxCell>
+                <mxCell id="c8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ED7100;align=left;spacingLeft=10;fontSize=12;" value="&lt;b&gt;manageMenu&lt;/b&gt; — เพิ่ม / แก้ / ลบเมนู&lt;br&gt;&lt;font color=&quot;#666666&quot;&gt;POST · PUT · DELETE /menu&lt;/font&gt;" vertex="1">
+                    <mxGeometry height="50" width="270" x="435" y="335" as="geometry"/>
+                </mxCell>
+                <mxCell id="c9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=#FFF8F0;strokeColor=#ED7100;verticalAlign=top;fontStyle=1;fontSize=13;" value="Lambda: ออเดอร์" vertex="1">
+                    <mxGeometry height="280" width="300" x="420" y="440" as="geometry"/>
+                </mxCell>
+                <mxCell id="c10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ED7100;align=left;spacingLeft=10;fontSize=12;" value="&lt;b&gt;createOrder&lt;/b&gt; — สั่งอาหาร&lt;br&gt;&lt;font color=&quot;#666666&quot;&gt;POST /orders&lt;/font&gt;" vertex="1">
+                    <mxGeometry height="50" width="270" x="435" y="475" as="geometry"/>
+                </mxCell>
+                <mxCell id="c11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ED7100;align=left;spacingLeft=10;fontSize=12;" value="&lt;b&gt;getOrder&lt;/b&gt; — ดูสถานะออเดอร์&lt;br&gt;&lt;font color=&quot;#666666&quot;&gt;GET /orders/{id}&lt;/font&gt;" vertex="1">
+                    <mxGeometry height="50" width="270" x="435" y="535" as="geometry"/>
+                </mxCell>
+                <mxCell id="c12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ED7100;align=left;spacingLeft=10;fontSize=12;" value="&lt;b&gt;listOrders&lt;/b&gt; — รายการออเดอร์ให้ครัว&lt;br&gt;&lt;font color=&quot;#666666&quot;&gt;GET /orders?status=...&lt;/font&gt;" vertex="1">
+                    <mxGeometry height="50" width="270" x="435" y="595" as="geometry"/>
+                </mxCell>
+                <mxCell id="c13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ED7100;align=left;spacingLeft=10;fontSize=12;" value="&lt;b&gt;updateOrderStatus&lt;/b&gt; — เปลี่ยนสถานะ&lt;br&gt;&lt;font color=&quot;#666666&quot;&gt;PATCH /orders/{id}/status&lt;/font&gt;" vertex="1">
+                    <mxGeometry height="50" width="270" x="435" y="655" as="geometry"/>
+                </mxCell>
+                <mxCell id="c14" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;fillColor=#7AA116;" value="S3 bucket รูปเมนู" vertex="1">
+                    <mxGeometry height="60" width="60" x="1340" y="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="c15" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.dynamodb;fillColor=#C925D1;" value="DynamoDB&lt;br&gt;Menu / Orders / Counters" vertex="1">
+                    <mxGeometry height="60" width="60" x="900" y="270" as="geometry"/>
+                </mxCell>
+                <mxCell id="c16" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;dashed=0;verticalLabelPosition=top;verticalAlign=bottom;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sqs;fillColor=#E7157B;" value="SQS&lt;br&gt;order-queue" vertex="1">
+                    <mxGeometry height="60" width="60" x="900" y="470" as="geometry"/>
+                </mxCell>
+                <mxCell id="c17" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sqs;fillColor=#E7157B;" value="SQS DLQ&lt;br&gt;(ออเดอร์ที่ล้ม)" vertex="1">
+                    <mxGeometry height="60" width="60" x="900" y="600" as="geometry"/>
+                </mxCell>
+                <mxCell id="c19" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sns;fillColor=#E7157B;" value="SNS&lt;br&gt;order-events" vertex="1">
+                    <mxGeometry height="60" width="60" x="900" y="800" as="geometry"/>
+                </mxCell>
+                <mxCell id="c20" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;fillColor=#ED7100;" value="Lambda&lt;br&gt;notifyCustomer&lt;br&gt;(บันทึก log)" vertex="1">
+                    <mxGeometry height="60" width="60" x="1120" y="800" as="geometry"/>
+                </mxCell>
+                <mxCell id="c21" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch_2;fillColor=#E7157B;" value="CloudWatch&lt;br&gt;Logs / Alarms / Dashboard&lt;br&gt;(เก็บ log ทุก Lambda)" vertex="1">
+                    <mxGeometry height="60" width="60" x="1330" y="800" as="geometry"/>
+                </mxCell>
+                <mxCell id="c22" edge="1" parent="1" source="c2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=11;exitX=0.5;exitY=0;entryX=0;entryY=0.5;" value="โหลดหน้าเว็บ">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="70" y="150"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="c23" edge="1" parent="1" source="c2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=11;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="c4" value="เรียก API">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="c24" edge="1" parent="1" source="c2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=11;exitX=0.5;exitY=0;dashed=1;exitDx=0;exitDy=0;exitPerimeter=0;" target="c14" value="อัปรูปตรง (presigned URL)">
+                    <mxGeometry relative="1" x="0.15" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="70" y="110"/>
+                            <mxPoint x="1370" y="110"/>
+                        </Array>
+                        <mxPoint x="240" y="150" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="c25" edge="1" parent="1" source="c4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=11;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="c5" value="/menu">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="370" y="450"/>
+                            <mxPoint x="370" y="290"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="c26" edge="1" parent="1" source="c4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=11;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="c9" value="/orders">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="370" y="450"/>
+                            <mxPoint x="370" y="580"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="c28" edge="1" parent="1" source="c5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=11;exitX=1;exitY=0.545;entryX=0;entryY=0.5;" target="c15" value="Menu">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="c29" edge="1" parent="1" source="c9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=11;exitX=1;exitY=0.107;entryX=0;entryY=0.833;" target="c15" value="Orders">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="860" y="470"/>
+                            <mxPoint x="860" y="320"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="c30" edge="1" parent="1" source="c10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=11;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="c16" value="ออเดอร์ใหม่">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="c31" edge="1" parent="1" source="c13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=11;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="c19" value="อาหารพร้อม">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="800" y="680"/>
+                            <mxPoint x="800" y="830"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="c32" edge="1" parent="1" source="c16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=11;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="trigger">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1120" y="500" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="c33" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=11;exitX=0.5;exitY=0;entryX=1;entryY=0.5;" target="c15" value="ออกเลขคิว">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1150" y="300"/>
+                        </Array>
+                        <mxPoint x="1150" y="470" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="c34" edge="1" parent="1" source="c16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=11;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="c17" value="ล้ม 3 ครั้ง">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="c35" edge="1" parent="1" source="c19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=11;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="c20" value="trigger">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="c36" edge="1" parent="1" source="c20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=11;exitX=1;exitY=0.5;entryX=0;entryY=0.5;dashed=1;" target="c21" value="log &quot;อาหารพร้อม&quot;">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E1VC4vjKSBiDOJYCgyuf-1" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;fillColor=#ED7100;" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-size: 11px;&quot;&gt;Lambda&lt;/span&gt;&lt;br style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgba(168, 169, 170, 0.52) rgb(18, 19, 20); font-size: 11px;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-size: 11px;&quot;&gt;kitchenConsumer&lt;/span&gt;&lt;br style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgba(168, 169, 170, 0.52) rgb(18, 19, 20); font-size: 11px;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-size: 11px;&quot;&gt;(ออกเลขคิว)&lt;/span&gt;" vertex="1">
+                    <mxGeometry height="60" width="60" x="1120" y="470" as="geometry"/>
+                </mxCell>
+                <mxCell id="QKHUCQyxj5-nSgL6LG4Z-1" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.amplify;fillColor=#DD344C;" value="Amplify Hosting&lt;br&gt;(หน้าเว็บ React)" vertex="1">
+                    <mxGeometry height="60" width="60" x="250" y="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="QKHUCQyxj5-nSgL6LG4Z-2" edge="1" parent="1" source="c2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=11;exitX=1;exitY=0.3333333333333333;dashed=1;exitDx=0;exitDy=0;exitPerimeter=0;" target="QKHUCQyxj5-nSgL6LG4Z-1" value="โหลดหน้าเว็บ">
+                    <mxGeometry relative="1" x="0.6033" as="geometry">
+                        <mxPoint as="offset"/>
+                        <Array as="points">
+                            <mxPoint x="90" y="200"/>
+                        </Array>
+                        <mxPoint x="200" y="650" as="sourcePoint"/>
+                        <mxPoint x="1490" y="440" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="amp-gh" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#24292e;fontColor=#ffffff;strokeColor=none;fontSize=12;" value="GitHub repo&lt;br&gt;(โฟลเดอร์ frontend)" vertex="1">
+                    <mxGeometry height="50" width="130" x="215" y="-70" as="geometry"/>
+                </mxCell>
+                <mxCell id="amp-gh-edge" edge="1" parent="1" source="amp-gh" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=11;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="QKHUCQyxj5-nSgL6LG4Z-1" value="push → build + deploy อัตโนมัติ">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
