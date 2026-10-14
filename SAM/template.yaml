@@ -1,0 +1,308 @@
+
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aws/serverless-application-model/main/samtranslator/schema/schema.json    
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Template for the Food Ordering System.
+
+Parameters:
+  Environment:
+    Type: String
+    Default: dev
+    AllowedValues:
+      - dev
+      - test
+      - prod
+  # TODO: number = Account ID
+  ExistingLambdaRoleArn:
+    Type: String
+    Default: 'arn:aws:iam::993529657790:role/LabRole'
+    Description: >
+      Full ARN of the existing LabRole.
+  CorsAllowedOrigin:
+    Type: String
+    Default: '*'
+    Description: Development default
+
+
+Globals:
+  Function:
+    Runtime: python3.12
+    Architectures:
+      - x86_64
+    MemorySize: 128
+    Timeout: 10
+    Environment:
+      Variables:
+        ENVIRONMENT: !Ref Environment
+        MENU_TABLE_NAME: !Ref MenuTable
+        ORDERS_TABLE_NAME: !Ref OrdersTable
+        COUNTERS_TABLE_NAME: !Ref CountersTable
+        MENU_IMAGES_BUCKET: !Ref MenuImagesBucket
+        ORDER_QUEUE_URL: !Ref OrderQueue
+        ORDER_EVENTS_TOPIC_ARN: !Ref OrderEventsTopic
+
+Resources:
+  FoodOrderingApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: !Sub food-ordering-api-${Environment}
+      StageName: !Ref Environment
+      EndpointConfiguration: REGIONAL
+      Cors:
+        AllowMethods: "'GET,POST,PUT,PATCH,DELETE,OPTIONS'"
+        AllowHeaders: "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'"
+        AllowOrigin: !Sub "'${CorsAllowedOrigin}'"
+
+  MenuTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub food-ordering-menu-${Environment}
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: menuId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: menuId
+          KeyType: HASH
+      SSESpecification:
+        SSEEnabled: true
+      # TODO: Add GSIs for other query patterns.
+      # GlobalSecondaryIndexes:
+      # - IndexName: CategoryIndex
+      #   KeySchema:
+      #     - AttributeName: category
+      #       KeyType: HASH
+      #   Projection:
+      #     ProjectionType: ALL
+
+  OrdersTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub food-ordering-orders-${Environment}
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: orderId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: orderId
+          KeyType: HASH
+      SSESpecification:
+        SSEEnabled: true
+      # TODO: Add an index if listing/filtering by status, customer, or date is required.
+
+  CountersTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub food-ordering-counters-${Environment}
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: counterName
+          AttributeType: S
+      KeySchema:
+        - AttributeName: counterName
+          KeyType: HASH
+      SSESpecification:
+        SSEEnabled: true
+      # TODO: Keep for incremented sequential order no.
+
+  MenuImagesBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub food-ordering-menu-images-${AWS::AccountId}-${AWS::Region}-${Environment}
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        IgnorePublicAcls: true
+        BlockPublicPolicy: true
+        RestrictPublicBuckets: true
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+
+  OrderDeadLetterQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: !Sub food-ordering-order-dlq-${Environment}
+      MessageRetentionPeriod: 1209600
+      SqsManagedSseEnabled: true
+
+  OrderQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: !Sub food-ordering-order-queue-${Environment}
+      VisibilityTimeout: 180
+      MessageRetentionPeriod: 345600
+      SqsManagedSseEnabled: true
+      RedrivePolicy:
+        deadLetterTargetArn: !GetAtt OrderDeadLetterQueue.Arn
+        maxReceiveCount: 3
+
+  OrderEventsTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: !Sub food-ordering-order-events-${Environment}
+
+  GetUploadUrlFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub food-ordering-get-upload-url-${Environment}
+      CodeUri: src/menu/get-upload-url/
+      Handler: app.lambda_handler
+      Role: !Ref ExistingLambdaRoleArn
+      Environment:
+        Variables:
+          MENU_IMAGES_BUCKET: !Ref MenuImagesBucket
+      Events:
+        GetUploadUrl:
+          Type: Api
+          Properties:
+            RestApiId: !Ref FoodOrderingApi
+            Path: '/menu/upload-url'
+            Method: POST
+
+  ListMenuFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub food-ordering-list-menu-${Environment}
+      CodeUri: src/menu/list-menu/
+      Handler: app.lambda_handler
+      Role: !Ref ExistingLambdaRoleArn
+      Events:
+        ListMenu:
+          Type: Api
+          Properties:
+            RestApiId: !Ref FoodOrderingApi
+            Path: '/menu'
+            Method: GET
+
+  ManageMenuFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub food-ordering-manage-menu-${Environment}
+      CodeUri: src/menu/manage-menu/
+      Handler: app.lambda_handler
+      Role: !Ref ExistingLambdaRoleArn
+      Events:
+        CreateMenu:
+          Type: Api
+          Properties:
+            RestApiId: !Ref FoodOrderingApi
+            Path: '/menu'
+            Method: POST
+        MenuItem:
+          Type: Api
+          Properties:
+            RestApiId: !Ref FoodOrderingApi
+            Path: '/menu/{menuId}'
+            Method: ANY
+      # TODO: Could replace ANY with PUT/DELETE/GET
+
+  CreateOrderFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub food-ordering-create-order-${Environment}
+      CodeUri: src/orders/create-order/
+      Handler: app.lambda_handler
+      Role: !Ref ExistingLambdaRoleArn
+      Events:
+        CreateOrder:
+          Type: Api
+          Properties:
+            RestApiId: !Ref FoodOrderingApi
+            Path: '/orders'
+            Method: POST
+
+  GetOrderFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub food-ordering-get-order-${Environment}
+      CodeUri: src/orders/get-order/
+      Handler: app.lambda_handler
+      Role: !Ref ExistingLambdaRoleArn
+      Events:
+        GetOrder:
+          Type: Api
+          Properties:
+            RestApiId: !Ref FoodOrderingApi
+            Path: '/orders/{orderId}'
+            Method: GET
+
+  ListOrdersFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub food-ordering-list-orders-${Environment}
+      CodeUri: src/orders/list-orders/
+      Handler: app.lambda_handler
+      Role: !Ref ExistingLambdaRoleArn
+      Events:
+        ListOrders:
+          Type: Api
+          Properties:
+            RestApiId: !Ref FoodOrderingApi
+            Path: '/orders'
+            Method: GET
+      # TODO: (chatgpt said) A status filter needs a suitable DynamoDB index/access pattern; avoid routine table scans.
+
+  UpdateOrderStatusFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub food-ordering-update-order-status-${Environment}
+      CodeUri: src/orders/update-order-status/
+      Handler: app.lambda_handler
+      Role: !Ref ExistingLambdaRoleArn
+      Events:
+        UpdateOrderStatus:
+          Type: Api
+          Properties:
+            RestApiId: !Ref FoodOrderingApi
+            Path: '/orders/{orderId}/status'
+            Method: PATCH
+      # TODO: Confirm which statuses publish SNS events bang
+
+  KitchenConsumerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub food-ordering-kitchen-consumer-${Environment}
+      CodeUri: src/kitchen/kitchen-consumer/
+      Handler: app.lambda_handler
+      Timeout: 30
+      Role: !Ref ExistingLambdaRoleArn
+      Events:
+        OrderQueueEvent:
+          Type: SQS
+          Properties:
+            Queue: !GetAtt OrderQueue.Arn
+            BatchSize: 1
+            Enabled: true
+
+  NotifyCustomerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub food-ordering-notify-customer-${Environment}
+      CodeUri: src/notifications/notify-customer/
+      Handler: app.lambda_handler
+      Role: !Ref ExistingLambdaRoleArn
+      Events:
+        OrderEvent:
+          Type: SNS
+          Properties:
+            Topic: !Ref OrderEventsTopic
+
+Outputs:
+  ApiBaseUrl:
+    Description: Base URL for the deployed API stage.
+    Value: !Sub 'https://${FoodOrderingApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/${Environment}'
+  MenuTableName:
+    Value: !Ref MenuTable
+  OrdersTableName:
+    Value: !Ref OrdersTable
+  CountersTableName:
+    Value: !Ref CountersTable
+  MenuImagesBucketName:
+    Value: !Ref MenuImagesBucket
+  OrderQueueUrl:
+    Value: !Ref OrderQueue
+  OrderDeadLetterQueueUrl:
+    Value: !Ref OrderDeadLetterQueue
+  OrderEventsTopicArn:
+    Value: !Ref OrderEventsTopic

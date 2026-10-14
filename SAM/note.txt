@@ -1,0 +1,37 @@
+sam validate --lint
+sam build
+
+sam deploy --guided
+sam deploy --template-file template.yaml --stack-name food-ordering
+
+aws cloudformation deploy \
+  --template-file amplify.yaml \
+  --stack-name food-ordering-frontend \
+  --capabilities CAPABILITY_IAM \
+  --region us-east-1
+
+sam list stack-outputs --stack-name food-ordering --region us-east-1
+
+------------------
+
+aws configure set region us-east-1
+aws configure list
+aws sts get-caller-identity
+
+------------------
+!Ref
+อ้างอิงค่าจาก Parameter หรือ Resource อื่น
+
+!Not
+กลับค่าผลลัพธ์ true false
+
+!Sub
+แทนค่าตัวแปรในข้อความ เช่น Account ID หรือ Region
+
+!GetAtt
+ดึง Attribute ของ Resource เช่น ARN
+
+SSE = Server-Side Encryption
+------------------
+OrderEventsTopic SNS จับการเปลี่ยนแปลง Status
+NotifyCustomerFunction subscribe SNS
