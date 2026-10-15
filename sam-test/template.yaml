@@ -1,0 +1,71 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: SAM smoke test for AWS Learner Lab (1 Lambda + 1 API endpoint)
+
+Globals:
+  Function:
+    Runtime: python3.12
+    Timeout: 10
+    MemorySize: 128
+    Environment:
+      Variables:
+        ORDERS_TABLE: !Ref OrdersTable
+        COUNTERS_TABLE: !Ref CountersTable
+
+Resources:
+  HelloFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: sam-test-hello
+      # Learner Lab cannot create IAM roles, so every function must set LabRole
+      # itself (Role is not allowed in Globals). Never add "Policies:".
+      Role: !Sub arn:aws:iam::${AWS::AccountId}:role/LabRole
+      CodeUri: src/
+      Handler: app.handler
+      Events:
+        HelloApi:
+          Type: Api
+          Properties:
+            Path: /hello
+            Method: get
+
+  OrdersTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: Orders
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: orderId
+          AttributeType: S
+        - AttributeName: status
+          AttributeType: S
+        - AttributeName: createdAt
+          AttributeType: S
+      KeySchema:
+        - AttributeName: orderId
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: status-createdAt-index
+          KeySchema:
+            - AttributeName: status
+              KeyType: HASH
+            - AttributeName: createdAt
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+  CountersTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: Counters
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: counterId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: counterId
+          KeyType: HASH
+Outputs:
+  HelloApiUrl:
+    Description: Test endpoint URL
+    Value:
+      Fn::Sub: "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello"

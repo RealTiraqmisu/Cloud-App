@@ -83,13 +83,25 @@ Resources:
       AttributeDefinitions:
         - AttributeName: orderId
           AttributeType: S
+        - AttributeName: status
+          AttributeType: S
+        - AttributeName: createdAt
+          AttributeType: S
       KeySchema:
         - AttributeName: orderId
           KeyType: HASH
       SSESpecification:
         SSEEnabled: true
       # TODO: Add an index if listing/filtering by status, customer, or date is required.
-
+      GlobalSecondaryIndexes:
+        - IndexName: status-createdAt-index
+          KeySchema:
+            - AttributeName: status
+              KeyType: HASH
+            - AttributeName: createdAt
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
   CountersTable:
     Type: AWS::DynamoDB::Table
     Properties:
