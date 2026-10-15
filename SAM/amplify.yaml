@@ -1,50 +1,69 @@
+# (ทางเลือก) สร้าง Amplify app ด้วย CloudFormation แทนการกดใน console
+# วิธีหลักที่แนะนำ: กดสร้างใน Amplify console ตาม amplify-hosting/README.md
+#
+# Build spec ไม่ได้อยู่ในไฟล์นี้ — Amplify ใช้ amplify.yml ที่ root ของ repo
+#
+# deploy:
+#   aws cloudformation deploy \
+#     --template-file amplify.yaml \
+#     --stack-name food-ordering-frontend \
+#     --region us-east-1 \
+#     --parameter-overrides \
+#       ApiBaseUrl=https://<api-id>.execute-api.us-east-1.amazonaws.com/dev \
+#       GitHubAccessToken=<github_personal_access_token>
+#   แล้วสั่ง build ครั้งแรก:
+#   aws amplify start-job --app-id <AppId> --branch-name main --job-type RELEASE
+
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Amplify Hosting for the Food Ordering frontend (frontend/ in a monorepo).
+
 Parameters:
   ApiBaseUrl:
     Type: String
-    Default: https://YOUR_API_ID.execute-api.us-east-1.amazonaws.com/dev
-    Description: API Gateway URL from the food-ordering stack
-  
+    Description: ApiBaseUrl output of the food-ordering SAM stack (no trailing slash). Leave empty for mock mode.
+    Default: ''
+  GitHubAccessToken:
+    Type: String
+    NoEcho: true
+    Description: GitHub personal access token with repo access (needed so Amplify can read the repo).
+  RepositoryUrl:
+    Type: String
+    Default: https://github.com/RealTiraqmisu/Cloud-App
+  BranchName:
+    Type: String
+    Default: main
+
+Resources:
   AmplifyApp:
     Type: AWS::Amplify::App
     Properties:
       Name: food-ordering-frontend
-      Repository: https://github.com/RealTiraqmisu/Cloud-App.git
+      Repository: !Ref RepositoryUrl
+      AccessToken: !Ref GitHubAccessToken
       Platform: WEB
-      BuildSpec: |
-        version: 1
-        frontend:
-          phases:
-            preBuild:
-              commands:
-                - npm ci
-            build:
-              commands:
-                - npm run build
-          artifacts:
-            baseDirectory: dist
-            files:
-              - '**/*'
-          cache:
-            paths:
-              - node_modules/**/*
-
-      # สมมติเป็น React :
       EnvironmentVariables:
-        - Name: VITE_API_BASE_URL
+        # ต้องตรงกับ appRoot ใน amplify.yml (console ไม่ตั้งให้เองเมื่อสร้างผ่าน CloudFormation)
+        - Name: AMPLIFY_MONOREPO_APP_ROOT
+          Value: frontend
+        # ชื่อต้องเป็น VITE_API_URL ให้ตรงกับ frontend/src/config.js
+        - Name: VITE_API_URL
           Value: !Ref ApiBaseUrl
-      # Frontend COde VV
-      # const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
-      # fetch(`${API_BASE_URL}/menu`)
-      #   .then((response) => response.json())
-      #   .then((data) => console.log(data));
+      CustomRules:
+        # ใช้ HashRouter อยู่แล้ว rule นี้แค่กันกรณีพิมพ์ path ผิด → กลับไปหน้าแรก
+        - Source: '/<*>'
+          Target: '/index.html'
+          Status: '404-200'
 
   AmplifyBranch:
     Type: AWS::Amplify::Branch
     Properties:
       AppId: !GetAtt AmplifyApp.AppId
-      BranchName: main
+      BranchName: !Ref BranchName
       EnableAutoBuild: true
+      Stage: PRODUCTION
 
-# เหมือนสร้างแยกจะโอเคกว่า 
-# แต่ถ้าใช้ yaml ต้องรอ setup git ก่อน เพราะต้องมี app ถึงจะ build ผ่าน
+Outputs:
+  AmplifyAppId:
+    Value: !GetAtt AmplifyApp.AppId
+  WebsiteUrl:
+    Value: !Sub 'https://${BranchName}.${AmplifyApp.DefaultDomain}'
