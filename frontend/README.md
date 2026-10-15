@@ -35,20 +35,29 @@ npm run dev        # http://localhost:5173
 ```bash
 cp .env.example .env
 # แก้ .env:
-# VITE_API_URL=https://<api-id>.execute-api.us-east-1.amazonaws.com/Prod
+# VITE_API_URL=https://<api-id>.execute-api.us-east-1.amazonaws.com/dev
 npm run dev
 ```
 
-## Deploy ขึ้น S3
+## Deploy ขึ้น AWS Amplify (แนะนำ)
+
+โปรเจกต์นี้พร้อมสำหรับ Amplify Hosting แบบต่อ GitHub แล้ว:
+
+- `../amplify.yml` — build spec (monorepo, `appRoot: frontend`) Amplify อ่านเองอัตโนมัติ
+- `.nvmrc` — บังคับ Node 22 ตอน build (Vite 8 ต้องใช้ Node ≥ 20.19)
+- ตั้ง Environment variable ใน Amplify: `VITE_API_URL` = `ApiBaseUrl` จาก `sam deploy`
+
+ขั้นตอนตั้งค่าแบบละเอียด: [`../amplify-hosting/README.md`](../amplify-hosting/README.md)
+
+> `VITE_API_URL` ถูกฝังตอน `npm run build` — เปลี่ยน URL แล้วต้องสั่ง build ใหม่ใน Amplify
+> ถ้าไม่ได้ตั้งค่านี้ เว็บบน Amplify จะรันโหมด Mock (มีแถบสีเหลือง)
+
+### ทางเลือก: Deploy ขึ้น S3 เอง
 
 ```bash
 npm run build                                   # ได้โฟลเดอร์ dist/
-aws s3 sync dist/ s3://<web-bucket>/ --delete   # อัปขึ้น bucket ที่ SAM สร้าง
+aws s3 sync dist/ s3://<web-bucket>/ --delete
 ```
-
-เปิดที่ `http://<web-bucket>.s3-website-us-east-1.amazonaws.com`
-
-> `VITE_API_URL` ถูกฝังตอน `npm run build` — เปลี่ยน URL แล้วต้อง build + sync ใหม่
 
 ## โครงสร้าง
 
