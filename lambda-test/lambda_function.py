@@ -4,7 +4,7 @@ def lambda_handler(event, context):
     return {
         "statusCode": 200,
         "body": json.dumps({
-            "message": "Hello from GitHub Actions V.2!",
+            "message": "Hello from GitHub Actions V.3!",
             "deployment": "success"
         })
     }
