@@ -2,7 +2,7 @@
 
 หน้าเว็บ React เรียก API ตามสัญญานี้ Lambda ทุกตัวต้องรับ/ส่งข้อมูลตามรูปแบบนี้ ถ้าจะเปลี่ยน ต้องแก้ทั้งสองฝั่ง
 
-- Base URL: `https://<api-id>.execute-api.us-east-1.amazonaws.com/Prod` (ใส่ใน `frontend/.env` เป็น `VITE_API_URL`)
+- Base URL: `https://<api-id>.execute-api.us-east-1.amazonaws.com/dev` (ใส่ใน `frontend/.env` เป็น `VITE_API_URL`)
 - ทุก request/response เป็น JSON (`Content-Type: application/json`)
 - ทุก response ต้องมี CORS header:
   ```

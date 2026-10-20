@@ -47,7 +47,8 @@ Resources:
     Properties:
       Name: !Sub food-ordering-api-${Environment}
       StageName: !Ref Environment
-      EndpointConfiguration: REGIONAL
+      EndpointConfiguration:
+        Type: REGIONAL
       Cors:
         AllowMethods: "'GET,POST,PUT,PATCH,DELETE,OPTIONS'"
         AllowHeaders: "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'"
@@ -61,19 +62,28 @@ Resources:
       AttributeDefinitions:
         - AttributeName: menuId
           AttributeType: S
+        - AttributeName: category
+          AttributeType: S
+        - AttributeName: createdAt
+          AttributeType: S
       KeySchema:
         - AttributeName: menuId
           KeyType: HASH
       SSESpecification:
         SSEEnabled: true
-      # TODO: Add GSIs for other query patterns.
-      # GlobalSecondaryIndexes:
-      # - IndexName: CategoryIndex
-      #   KeySchema:
-      #     - AttributeName: category
-      #       KeyType: HASH
-      #   Projection:
-      #     ProjectionType: ALL
+      # Other attributes (not keys, so not declared here):
+      #   name (S), description (S), price (N), imageKey (S, nullable),
+      #   available (BOOL), updatedAt (S). imageUrl is NOT stored: Lambda builds
+      #   a presigned GET URL from imageKey on read.
+      GlobalSecondaryIndexes:
+        - IndexName: category-createdAt-index
+          KeySchema:
+            - AttributeName: category
+              KeyType: HASH
+            - AttributeName: createdAt
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
 
   OrdersTable:
     Type: AWS::DynamoDB::Table
@@ -130,6 +140,17 @@ Resources:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
               SSEAlgorithm: AES256
+      # Browser uploads via presigned PUT URL (see docs/API.md) and reads via presigned GET.
+      CorsConfiguration:
+        CorsRules:
+          - AllowedMethods:
+              - PUT
+              - GET
+            AllowedOrigins:
+              - !Ref CorsAllowedOrigin
+            AllowedHeaders:
+              - '*'
+            MaxAge: 3000
 
   OrderDeadLetterQueue:
     Type: AWS::SQS::Queue
