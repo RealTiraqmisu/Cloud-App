@@ -7,7 +7,7 @@ s3_prefix = "food-ordering"
 region = "us-east-1"
 confirm_changeset = true
 capabilities = "CAPABILITY_IAM"
-parameter_overrides = "Environment=\"dev\" ExistingLambdaRoleArn=\"arn:aws:iam::993529657790:role/LabRole\" CorsAllowedOrigin=\"*\""
+parameter_overrides = "Environment=\"dev\" ExistingLambdaRoleArn=\"arn:aws:iam::996289209161:role/LabRole\" CorsAllowedOrigin=\"*\""
 disable_rollback = true
 image_repositories = []
 
