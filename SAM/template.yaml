@@ -15,7 +15,7 @@ Parameters:
   # TODO: number = Account ID
   ExistingLambdaRoleArn:
     Type: String
-    Default: 'arn:aws:iam::993529657790:role/LabRole'
+    Default: 'arn:aws:iam::996289209161:role/LabRole'
     Description: >
       Full ARN of the existing LabRole.
   CorsAllowedOrigin:
