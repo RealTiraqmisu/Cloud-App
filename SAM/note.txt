@@ -10,6 +10,9 @@ aws cloudformation deploy \
   --capabilities CAPABILITY_IAM \
   --region us-east-1
 
+aws cloudformation deploy --template-file monitoring.yaml --stack-name food-ordering-monitoring --region us-east-1
+sam deploy --template-file cloudwatch.yaml --stack-name food-ordering-monitoring
+
 sam list stack-outputs --stack-name food-ordering --region us-east-1
 
 ------------------

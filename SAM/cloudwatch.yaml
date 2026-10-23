@@ -1,0 +1,10 @@
+# RetentionInDays ระยะเวลาที่เก็บข้อมูลไว้
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudWatch Logs for notifyCustomer
+
+Resources:
+  NotifyCustomerLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/lambda/food-ordering-notify-customer-dev
+      RetentionInDays: 14
