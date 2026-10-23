@@ -307,6 +307,9 @@ Resources:
             Queue: !GetAtt OrderQueue.Arn
             BatchSize: 1
             Enabled: true
+            ScalingConfig:
+              MaximumConcurrency: 2
+      # add event
 
   NotifyCustomerFunction:
     Type: AWS::Serverless::Function
