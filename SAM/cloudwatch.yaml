@@ -10,6 +10,30 @@ Resources:
       LogGroupName: /aws/lambda/food-ordering-notify-customer-dev
       RetentionInDays: 14
 
+  GetUploadUrlLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/lambda/food-ordering-get-upload-url-dev
+      RetentionInDays: 14
+
+  ManageMenuLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/lambda/food-ordering-manage-menu-dev
+      RetentionInDays: 14
+
+  CreateOrderLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/lambda/food-ordering-create-order-dev
+      RetentionInDays: 14
+
+  GetOrderLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/lambda/food-ordering-get-order-dev
+      RetentionInDays: 14
+
   CloudWatchAlarmTopic:
     Type: AWS::SNS::Topic
     Properties:
@@ -120,13 +144,10 @@ Resources:
                 "width": 24,
                 "height": 8,
                 "properties": {
-                  "title": "READY Notifications — easiest to read",
+                  "title": "READY status Notifications",
                   "region": "${AWS::Region}",
                   "view": "table",
-                  "logGroupNames": [
-                    "/aws/lambda/food-ordering-notify-customer-dev"
-                  ],
-                  "query": "fields @timestamp, @message\n| filter @message like /Order notification received/ and @message like /status=READY/\n| sort @timestamp desc\n| limit 100"
+                  "query": "SOURCE '/aws/lambda/food-ordering-notify-customer-dev' | fields @timestamp, @message\n| filter @message like /Order notification received/ and @message like /status=READY/\n| sort @timestamp desc\n| limit 100"
                 }
               },
               {
@@ -139,18 +160,7 @@ Resources:
                   "title": "Recent Lambda Logs — all backend functions",
                   "region": "${AWS::Region}",
                   "view": "table",
-                  "logGroupNames": [
-                    "/aws/lambda/food-ordering-get-upload-url-dev",
-                    "/aws/lambda/food-ordering-list-menu-dev",
-                    "/aws/lambda/food-ordering-manage-menu-dev",
-                    "/aws/lambda/food-ordering-create-order-dev",
-                    "/aws/lambda/food-ordering-get-order-dev",
-                    "/aws/lambda/food-ordering-list-orders-dev",
-                    "/aws/lambda/food-ordering-update-order-status-dev",
-                    "/aws/lambda/food-ordering-kitchen-consumer-dev",
-                    "/aws/lambda/food-ordering-notify-customer-dev"
-                  ],
-                  "query": "fields @timestamp, @log, @message\n| sort @timestamp desc\n| limit 100"
+                  "query": "SOURCE '/aws/lambda/food-ordering-get-upload-url-dev' | SOURCE '/aws/lambda/food-ordering-list-menu-dev' | SOURCE '/aws/lambda/food-ordering-manage-menu-dev' | SOURCE '/aws/lambda/food-ordering-create-order-dev' | SOURCE '/aws/lambda/food-ordering-get-order-dev' | SOURCE '/aws/lambda/food-ordering-list-orders-dev' | SOURCE '/aws/lambda/food-ordering-update-order-status-dev' | SOURCE '/aws/lambda/food-ordering-kitchen-consumer-dev' | SOURCE '/aws/lambda/food-ordering-notify-customer-dev' | fields @timestamp, @log, @message\n| sort @timestamp desc\n| limit 100"
                 }
               },
               {
