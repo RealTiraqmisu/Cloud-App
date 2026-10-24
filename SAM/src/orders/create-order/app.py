@@ -32,7 +32,7 @@ def lambda_handler(event, context):
         items = build_order_items(body["items"])
         order = build_order(body, items)
 
-        orders_table.put_item(Item=order, CondtionExpression="attribute_not_exists(orderId)")
+        orders_table.put_item(Item=order, ConditionExpression="attribute_not_exists(orderId)")
         send_to_queue(order["orderId"])
 
         return response(201, {"order": order})
