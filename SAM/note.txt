@@ -13,7 +13,70 @@ aws cloudformation deploy \
 aws cloudformation deploy --template-file monitoring.yaml --stack-name food-ordering-monitoring --region us-east-1
 sam deploy --template-file cloudwatch.yaml --stack-name food-ordering-monitoring
 
+print url
 sam list stack-outputs --stack-name food-ordering --region us-east-1
+
+
+sam list stack-outputs --stack-name food-ordering-frontend --region us-east-1
+
+aws amplify start-job --app-id d3jjg3mxiddvso --branch-name main --job-type RELEASE --region us-east-1
+aws amplify get-job --app-id d3jjg3mxiddvso --branch-name main --job-id 1 --region us-east-1 --query "job.summary.status" --output text
+
+sam deploy --parameter-overrides CorsAllowedOrigin=https://main.d3jjg3mxiddvso.amplifyapp.com
+------------------
+เช็ค notify
+
+เทสส่งข้อความ
+aws sns publish ^
+  --topic-arn arn:aws:sns:us-east-1:996289209161:food-ordering-order-events-dev ^
+  --message "{\"eventType\":\"ORDER_STATUS_UPDATED\",\"orderId\":\"TEST-001\",\"status\":\"PREPARING\"}" ^
+  --region us-east-1
+
+aws sns list-subscriptions-by-topic ^
+  --topic-arn arn:aws:sns:us-east-1:996289209161:food-ordering-order-events-dev ^
+  --region us-east-1
+
+aws lambda get-function ^
+  --function-name food-ordering-notify-customer-dev ^
+  --region us-east-1
+
+ทดสอบและดู CloudWatch Logs ของ Lambda notifyCustomer
+
+aws logs tail /aws/lambda/food-ordering-notify-customer-dev ^
+  --since 30m ^
+  --region us-east-1
+
+------------------
+เช็คของแก้ม
+aws sqs list-queues --region us-east-1 --output table
+
+aws sqs get-queue-attributes ^
+  --queue-url "https://sqs.us-east-1.amazonaws.com/996289209161/food-ordering-order-queue-dev" ^
+  --attribute-names All ^
+  --region us-east-1 ^
+  --output json
+
+aws sqs send-message ^
+  --queue-url "https://sqs.us-east-1.amazonaws.com/996289209161/food-ordering-order-queue-dev" ^
+  --message-body "{\"orderId\":\"TEST-KITCHEN-999\"}" ^
+  --region us-east-1
+
+aws sqs get-queue-attributes --queue-url "https://sqs.us-east-1.amazonaws.com/996289209161/food-ordering-order-dlq-dev" --attribute-names ApproximateNumberOfMessages --region us-east-1 --output table
+
+
+aws sqs receive-message ^
+  --queue-url "https://sqs.us-east-1.amazonaws.com/996289209161/food-ordering-order-dlq-dev" ^
+  --max-number-of-messages 1 ^
+  --attribute-names All ^
+  --message-attribute-names All ^
+  --region us-east-1 ^
+  --output json
+
+
+aws dynamodb delete-item ^
+  --table-name food-ordering-orders-dev ^
+  --key "{\"orderId\":{\"S\":\"TEST-KITCHEN-001\"}}" ^
+  --region us-east-1
 
 ------------------
 

@@ -83,32 +83,60 @@ def get_new_status(event):
     return new_status
 
 
+
+
 def update_status(order_id, new_status):
     """update_item แบบมีเงื่อนไข: order ต้องมีอยู่ และสถานะเดิมต้องเปลี่ยนมาเป็น new_status ได้."""
-    allowed_from = [s for s, nxt in TRANSITIONS.items() if new_status in nxt]
+    allowed_from = [
+        status
+        for status, next_statuses in TRANSITIONS.items()
+        if new_status in next_statuses
+    ]
     now = utc_now()
 
     if not allowed_from:
         # ไม่มีสถานะไหนเปลี่ยนมา new_status ได้ (เช่น PENDING) และ IN () ว่างใช้ไม่ได้
         raise_not_found_or_conflict(order_id, new_status)
 
+    # อ่านสถานะเดิมไว้ใช้สร้าง notify-customer
+    existing = orders_table.get_item(
+        Key={"orderId": order_id},
+        ConsistentRead=True,
+    ).get("Item")
+
+    if not existing:
+        raise NotFoundError("Order not found")
+
+    previous_status = existing.get("status")
+    if previous_status not in allowed_from:
+        raise ConflictError(
+            f"Cannot change status from {previous_status} to {new_status}"
+        )
+
     values = {
         ":new": new_status,
         ":now": now,
         ":h": [{"status": new_status, "at": now}],
+        ":empty": [],
     }
     placeholders = []
-    for idx, s in enumerate(allowed_from):
+
+    for idx, status in enumerate(allowed_from):
         key = f":f{idx}"
-        values[key] = s
+        values[key] = status
         placeholders.append(key)
 
     try:
         resp = orders_table.update_item(
             Key={"orderId": order_id},
-            UpdateExpression="SET #s = :new, updatedAt = :now, "
-                             "statusHistory = list_append(statusHistory, :h)",
-            ConditionExpression=f"attribute_exists(orderId) AND #s IN ({', '.join(placeholders)})",
+            UpdateExpression=(
+                "SET #s = :new, updatedAt = :now, "
+                "statusHistory = list_append("
+                "if_not_exists(statusHistory, :empty), :h)"
+            ),
+            ConditionExpression=(
+                f"attribute_exists(orderId) AND #s IN ({', '.join(placeholders)})"
+            ),
             ExpressionAttributeNames={"#s": "status"},
             ExpressionAttributeValues=values,
             ReturnValues="ALL_NEW",
@@ -117,7 +145,10 @@ def update_status(order_id, new_status):
         if e.response["Error"]["Code"] == "ConditionalCheckFailedException":
             raise_not_found_or_conflict(order_id, new_status)
         raise
-    return resp["Attributes"]
+
+    order = resp["Attributes"]
+    order["previousStatus"] = previous_status
+    return order
 
 
 def raise_not_found_or_conflict(order_id, new_status):
@@ -127,18 +158,27 @@ def raise_not_found_or_conflict(order_id, new_status):
     raise ConflictError(f"Cannot change status from {item['status']} to {new_status}")
 
 
+
 def publish_ready_event(order):
     """ส่ง SNS เมื่อ READY ถ้าล้มเหลวให้ย้อนสถานะกลับแล้ว raise ต่อ (-> 500)."""
     try:
         sns.publish(
             TopicArn=TOPIC_ARN,
+            Subject="Order Ready for Pickup",
             Message=json.dumps(
                 {
+                    "eventType": "ORDER_STATUS_UPDATED",
                     "orderId": order["orderId"],
-                    "queueNumber": order.get("queueNumber"),
-                    "customerName": order["customerName"],
-                    "contact": order.get("contact", ""),
+                    "previousStatus": (
+                        order.get("statusHistory", [{}])[-2].get("status", "UNKNOWN")
+                        if len(order.get("statusHistory", [])) >= 2
+                        else "UNKNOWN"
+                    ),
                     "status": "READY",
+                    "queueNumber": order.get("queueNumber"),
+                    "customerName": order.get("customerName", ""),
+                    "contact": order.get("contact", ""),
+                    "updatedAt": order.get("updatedAt", utc_now()),
                 },
                 default=to_jsonable,
                 ensure_ascii=False,
