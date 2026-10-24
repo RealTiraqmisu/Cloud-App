@@ -1,10 +1,303 @@
 # RetentionInDays ระยะเวลาที่เก็บข้อมูลไว้
 AWSTemplateFormatVersion: '2010-09-09'
-Description: CloudWatch Logs for notifyCustomer
+Description: CloudWatch dashboard, Lambda/SQS alarms, and notification topic for Food Ordering dev.
 
 Resources:
-  NotifyCustomerLogGroup:
-    Type: AWS::Logs::LogGroup
+  CloudWatchAlarmTopic:
+    Type: AWS::SNS::Topic
     Properties:
-      LogGroupName: /aws/lambda/food-ordering-notify-customer-dev
-      RetentionInDays: 14
+      TopicName: food-ordering-cloudwatch-alarms-dev
+
+  FoodOrderingDashboard:
+    Type: AWS::CloudWatch::Dashboard
+    Properties:
+      DashboardName: food-ordering-dev
+      DashboardBody:
+        Fn::Sub: |
+          {
+            "widgets": [
+              {
+                "type": "text",
+                "x": 0,
+                "y": 0,
+                "width": 24,
+                "height": 2,
+                "properties": {
+                  "markdown": "# Food Ordering — CloudWatch\n\nUse **Recent Lambda Logs** to inspect all backend functions. **READY Notifications** filters the customer-notification Lambda to status READY events. Alarm notifications go to the separate SNS topic `food-ordering-cloudwatch-alarms-dev`."
+                }
+              },
+              {
+                "type": "metric",
+                "x": 0,
+                "y": 2,
+                "width": 12,
+                "height": 6,
+                "properties": {
+                  "title": "Lambda Invocations",
+                  "view": "timeSeries",
+                  "region": "${AWS::Region}",
+                  "stat": "Sum",
+                  "period": 300,
+                  "metrics": [
+                    [
+                      "AWS/Lambda",
+                      "Invocations",
+                      "FunctionName",
+                      "food-ordering-create-order-dev"
+                    ],
+                    [
+                      "AWS/Lambda",
+                      "Invocations",
+                      "FunctionName",
+                      "food-ordering-update-order-status-dev"
+                    ],
+                    [
+                      "AWS/Lambda",
+                      "Invocations",
+                      "FunctionName",
+                      "food-ordering-kitchen-consumer-dev"
+                    ],
+                    [
+                      "AWS/Lambda",
+                      "Invocations",
+                      "FunctionName",
+                      "food-ordering-notify-customer-dev"
+                    ]
+                  ]
+                }
+              },
+              {
+                "type": "metric",
+                "x": 12,
+                "y": 2,
+                "width": 12,
+                "height": 6,
+                "properties": {
+                  "title": "Lambda Errors",
+                  "view": "timeSeries",
+                  "region": "${AWS::Region}",
+                  "stat": "Sum",
+                  "period": 300,
+                  "metrics": [
+                    [
+                      "AWS/Lambda",
+                      "Errors",
+                      "FunctionName",
+                      "food-ordering-create-order-dev"
+                    ],
+                    [
+                      "AWS/Lambda",
+                      "Errors",
+                      "FunctionName",
+                      "food-ordering-update-order-status-dev"
+                    ],
+                    [
+                      "AWS/Lambda",
+                      "Errors",
+                      "FunctionName",
+                      "food-ordering-kitchen-consumer-dev"
+                    ],
+                    [
+                      "AWS/Lambda",
+                      "Errors",
+                      "FunctionName",
+                      "food-ordering-notify-customer-dev"
+                    ]
+                  ]
+                }
+              },
+              {
+                "type": "log",
+                "x": 0,
+                "y": 8,
+                "width": 24,
+                "height": 8,
+                "properties": {
+                  "title": "READY Notifications — easiest to read",
+                  "region": "${AWS::Region}",
+                  "view": "table",
+                  "logGroupNames": [
+                    "/aws/lambda/food-ordering-notify-customer-dev"
+                  ],
+                  "query": "fields @timestamp, @message\n| filter @message like /Order notification received/ and @message like /status=READY/\n| sort @timestamp desc\n| limit 100"
+                }
+              },
+              {
+                "type": "log",
+                "x": 0,
+                "y": 16,
+                "width": 24,
+                "height": 10,
+                "properties": {
+                  "title": "Recent Lambda Logs — all backend functions",
+                  "region": "${AWS::Region}",
+                  "view": "table",
+                  "logGroupNames": [
+                    "/aws/lambda/food-ordering-get-upload-url-dev",
+                    "/aws/lambda/food-ordering-list-menu-dev",
+                    "/aws/lambda/food-ordering-manage-menu-dev",
+                    "/aws/lambda/food-ordering-create-order-dev",
+                    "/aws/lambda/food-ordering-get-order-dev",
+                    "/aws/lambda/food-ordering-list-orders-dev",
+                    "/aws/lambda/food-ordering-update-order-status-dev",
+                    "/aws/lambda/food-ordering-kitchen-consumer-dev",
+                    "/aws/lambda/food-ordering-notify-customer-dev"
+                  ],
+                  "query": "fields @timestamp, @log, @message\n| sort @timestamp desc\n| limit 100"
+                }
+              },
+              {
+                "type": "metric",
+                "x": 0,
+                "y": 26,
+                "width": 12,
+                "height": 6,
+                "properties": {
+                  "title": "SQS Queue Depth (orders + DLQ)",
+                  "view": "timeSeries",
+                  "region": "${AWS::Region}",
+                  "stat": "Maximum",
+                  "period": 300,
+                  "metrics": [
+                    [
+                      "AWS/SQS",
+                      "ApproximateNumberOfMessagesVisible",
+                      "QueueName",
+                      "food-ordering-order-queue-dev"
+                    ],
+                    [
+                      "AWS/SQS",
+                      "ApproximateNumberOfMessagesVisible",
+                      "QueueName",
+                      "food-ordering-order-dlq-dev"
+                    ]
+                  ]
+                }
+              },
+              {
+                "type": "metric",
+                "x": 12,
+                "y": 26,
+                "width": 12,
+                "height": 6,
+                "properties": {
+                  "title": "Update Status / Notify / Kitchen Errors",
+                  "view": "singleValue",
+                  "region": "${AWS::Region}",
+                  "stat": "Sum",
+                  "period": 300,
+                  "metrics": [
+                    [
+                      "AWS/Lambda",
+                      "Errors",
+                      "FunctionName",
+                      "food-ordering-update-order-status-dev"
+                    ],
+                    [
+                      "AWS/Lambda",
+                      "Errors",
+                      "FunctionName",
+                      "food-ordering-notify-customer-dev"
+                    ],
+                    [
+                      "AWS/Lambda",
+                      "Errors",
+                      "FunctionName",
+                      "food-ordering-kitchen-consumer-dev"
+                    ]
+                  ]
+                }
+              }
+            ]
+          }
+
+  UpdateOrderStatusErrorsAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: food-ordering-update-order-status-errors-dev
+      AlarmDescription: Update order status Lambda reported one or more errors.
+      Namespace: AWS/Lambda
+      MetricName: Errors
+      Dimensions:
+        - Name: FunctionName
+          Value: food-ordering-update-order-status-dev
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 1
+      DatapointsToAlarm: 1
+      Threshold: 0
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: notBreaching
+      AlarmActions:
+        - !Ref CloudWatchAlarmTopic
+
+  NotifyCustomerErrorsAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: food-ordering-notify-customer-errors-dev
+      AlarmDescription: SNS notification consumer Lambda reported one or more errors.
+      Namespace: AWS/Lambda
+      MetricName: Errors
+      Dimensions:
+        - Name: FunctionName
+          Value: food-ordering-notify-customer-dev
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 1
+      DatapointsToAlarm: 1
+      Threshold: 0
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: notBreaching
+      AlarmActions:
+        - !Ref CloudWatchAlarmTopic
+
+  KitchenConsumerErrorsAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: food-ordering-kitchen-consumer-errors-dev
+      AlarmDescription: SQS kitchen consumer Lambda reported one or more errors.
+      Namespace: AWS/Lambda
+      MetricName: Errors
+      Dimensions:
+        - Name: FunctionName
+          Value: food-ordering-kitchen-consumer-dev
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 1
+      DatapointsToAlarm: 1
+      Threshold: 0
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: notBreaching
+      AlarmActions:
+        - !Ref CloudWatchAlarmTopic
+
+  OrderDeadLetterQueueAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: food-ordering-dlq-not-empty-dev
+      AlarmDescription: One or more failed order messages are waiting in the dead-letter queue.
+      Namespace: AWS/SQS
+      MetricName: ApproximateNumberOfMessagesVisible
+      Dimensions:
+        - Name: QueueName
+          Value: food-ordering-order-dlq-dev
+      Statistic: Maximum
+      Period: 300
+      EvaluationPeriods: 1
+      DatapointsToAlarm: 1
+      Threshold: 0
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: notBreaching
+      AlarmActions:
+        - !Ref CloudWatchAlarmTopic
+
+Outputs:
+  DashboardName:
+    Description: CloudWatch dashboard name.
+    Value: !Ref FoodOrderingDashboard
+  DashboardUrl:
+    Description: URL of the CloudWatch dashboard.
+    Value: !Sub 'https://${AWS::Region}.console.aws.amazon.com/cloudwatch/home?region=${AWS::Region}#dashboards:name=food-ordering-dev'
+  AlarmTopicArn:
+    Description: SNS topic to subscribe to for alarm notifications.
+    Value: !Ref CloudWatchAlarmTopic

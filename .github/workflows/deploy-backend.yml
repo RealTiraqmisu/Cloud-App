@@ -54,3 +54,11 @@ jobs:
           sam deploy \
             --no-confirm-changeset \
             --no-fail-on-empty-changeset
+
+      - name: Deploy CloudWatch
+        run: |
+          sam deploy \
+            --template-file cloudwatch.yaml \
+            --stack-name food-ordering-cloudwatch \
+            --region us-east-1 \
+            --no-fail-on-empty-changeset
