@@ -3,6 +3,13 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: CloudWatch dashboard, Lambda/SQS alarms, and notification topic for Food Ordering dev.
 
 Resources:
+  # Keep managing the existing Lambda log group in this single monitoring stack.
+  NotifyCustomerLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/lambda/food-ordering-notify-customer-dev
+      RetentionInDays: 14
+
   CloudWatchAlarmTopic:
     Type: AWS::SNS::Topic
     Properties:

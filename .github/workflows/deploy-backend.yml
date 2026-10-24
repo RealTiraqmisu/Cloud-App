@@ -59,6 +59,6 @@ jobs:
         run: |
           aws cloudformation deploy \
             --template-file cloudwatch.yaml \
-            --stack-name food-ordering-cloudwatch \
+            --stack-name food-ordering-monitoring \
             --region us-east-1 \
             --no-fail-on-empty-changeset
