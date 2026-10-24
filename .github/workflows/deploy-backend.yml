@@ -57,7 +57,7 @@ jobs:
 
       - name: Deploy CloudWatch
         run: |
-          sam deploy \
+          aws cloudformation deploy \
             --template-file cloudwatch.yaml \
             --stack-name food-ordering-cloudwatch \
             --region us-east-1 \
