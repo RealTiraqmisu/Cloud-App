@@ -10,7 +10,7 @@ import { playChime, unlockAudio } from '../utils/notify'
 const COLUMNS = [
   { key: 'queue', title: 'คิวใหม่', statuses: ['PENDING', 'QUEUED'], empty: 'ยังไม่มีออเดอร์ใหม่' },
   { key: 'cooking', title: 'กำลังทำ', statuses: ['PREPARING'], empty: 'ยังไม่มีจานที่กำลังทำ' },
-  { key: 'ready', title: 'รอเสิร์ฟ', statuses: ['READY'], empty: 'ไม่มีจานรอเสิร์ฟ' },
+  { key: 'ready', title: 'รอรับ', statuses: ['READY'], empty: 'ไม่มีออเดอร์รอลูกค้ามารับ' },
 ]
 
 const ACTIVE_STATUSES = COLUMNS.flatMap((c) => c.statuses)
@@ -18,7 +18,7 @@ const ACTIVE_STATUSES = COLUMNS.flatMap((c) => c.statuses)
 const PRIMARY_ACTION = {
   QUEUED: { to: 'PREPARING', label: 'เริ่มทำ', Icon: Flame },
   PREPARING: { to: 'READY', label: 'อาหารพร้อม', Icon: BellRing },
-  READY: { to: 'COMPLETED', label: 'เสิร์ฟแล้ว', Icon: Check },
+  READY: { to: 'COMPLETED', label: 'ลูกค้ารับแล้ว', Icon: Check },
 }
 
 export default function KitchenPage() {
@@ -177,10 +177,8 @@ function KitchenTicket({ order, now, busy, onMove }) {
       <div className="ticket-head">
         <QueuePlate number={order.queueNumber} size="kds" />
         <div className="ticket-who">
-          <div className="ticket-table">{order.tableNumber ? `โต๊ะ ${order.tableNumber}` : 'ไม่ระบุโต๊ะ'}</div>
-          <div className="ticket-name">
-            {order.customerName} · สั่ง {formatTime(order.createdAt)}
-          </div>
+          <div className="ticket-table">{order.customerName}</div>
+          <div className="ticket-name">สั่ง {formatTime(order.createdAt)}</div>
         </div>
         {!pending && (
           <span

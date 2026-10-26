@@ -8,9 +8,9 @@ API ที่ใช้: [`../docs/API.md`](../docs/API.md)
 | URL | หน้า |
 |---|---|
 | `#/` | เมนู + ตะกร้า + สั่งอาหาร |
-| `#/order/<orderId>` | ติดตามสถานะ (polling ทุก 4 วิ, popup + เสียงเมื่อ `READY` — พนักงานนำไปเสิร์ฟที่โต๊ะ) |
+| `#/order/<orderId>` | ติดตามสถานะ (polling ทุก 4 วิ, popup + เสียงเมื่อ `READY` ให้มารับที่เคาน์เตอร์) |
 | `#/my-orders` | ออเดอร์ที่สั่งจากเบราว์เซอร์นี้ |
-| `#/kitchen` | หน้าจอครัว 3 คอลัมน์ (คิวใหม่ / กำลังทำ / รอเสิร์ฟ) |
+| `#/kitchen` | หน้าจอครัว 3 คอลัมน์ (คิวใหม่ / กำลังทำ / รอรับ) |
 | `#/admin` | เพิ่ม/แก้/ลบเมนู, อัปโหลดรูป, เปิด-ปิดเมนูที่หมด |
 
 ใช้ `HashRouter` (`/#/kitchen`) เพื่อให้เปิดลิงก์ตรงบน S3 static website ได้โดยไม่ต้องตั้ง rewrite
@@ -22,14 +22,13 @@ API ที่ใช้: [`../docs/API.md`](../docs/API.md)
 | ไฟล์ | ใช้ทำอะไร |
 |---|---|
 | `DESIGN.md` | ระบบดีไซน์ทั้งหมด: สี (hex), ฟอนต์, ขนาด, มุมโค้ง, component, กฎห้าม/ควรทำ — **อ่านก่อนแก้ UI** |
-| `PRODUCT.md` | ผู้ใช้ งาน และข้อจำกัดของระบบ (ร้านนั่งทานในร้าน พนักงานเสิร์ฟที่โต๊ะ) |
+| `PRODUCT.md` | ผู้ใช้ งาน และข้อจำกัดของระบบ (ร้านแบบเคาน์เตอร์ ลูกค้ามารับเองตามเลขคิว) |
 | `.impeccable/` | ข้อมูลสำหรับ impeccable (design tokens + direction ของหน้า) |
 | `src/index.css` | token สีทั้งหมดอยู่ใน `:root` บนสุดของไฟล์ |
 
 - ฟอนต์ self-host ผ่าน npm (ไม่ต้องโหลดจาก Google Fonts): **Anuphan** (หัวข้อ ปุ่ม ราคา ตัวเลข) + **IBM Plex Sans Thai Looped** (เนื้อหา)
 - ไอคอนใช้ `lucide-react` อย่างเดียว ห้ามใช้ emoji แทนไอคอน
 - เลขคิวแสดงด้วย `<QueuePlate>` (ตัวเลขเหลืองบนป้ายเขียว) ทุกหน้า
-- ฟอร์มสั่งอาหารมีช่อง **เลขโต๊ะ** → ส่งไปเป็น `tableNumber` ใน `POST /orders` (ดู `../docs/API.md`)
 - รองรับมือถือ (ตะกร้าเป็นแถบล่าง + bottom sheet), แท็บเล็ต (หน้าครัวสลับคอลัมน์เป็นแท็บ < 900px) และคอม
 
 ## รันบนเครื่อง
@@ -87,7 +86,7 @@ src/
 │   └── mock.js       ← backend จำลอง (กฎเดียวกับ Lambda)
 ├── pages/            ← MenuPage, OrderTrackingPage, MyOrdersPage, KitchenPage, AdminPage
 ├── components/       ← Layout, QueuePlate (ป้ายเลขคิว), StatusBadge, MenuImage, QtyStepper, ConfirmDialog
-├── context/          ← CartContext (ตะกร้า + ออเดอร์ของฉัน + ชื่อ/เลขโต๊ะที่ใช้ล่าสุด)
+├── context/          ← CartContext (ตะกร้า + ออเดอร์ของฉัน + ชื่อที่ใช้ล่าสุด)
 ├── hooks/            ← usePolling, useLocalStorage
 ├── utils/            ← format (ราคา/เวลา), notify (เสียง + browser notification)
 ├── constants.js      ← สถานะ ลำดับการเปลี่ยน (ต้องตรงกับ Lambda) และเกณฑ์เวลาเตือนในครัว

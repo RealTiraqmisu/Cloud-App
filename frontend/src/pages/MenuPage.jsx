@@ -42,7 +42,7 @@ export default function MenuPage() {
         <section aria-labelledby="menu-title">
           <div className="page-head">
             <h1 id="menu-title">เมนูวันนี้</h1>
-            <p>สั่งจากโต๊ะได้เลย พนักงานจะนำอาหารไปเสิร์ฟให้</p>
+            <p>สั่งแล้วรอเรียกคิว อาหารพร้อมเมื่อไหร่มารับที่เคาน์เตอร์</p>
           </div>
 
           {sections.length > 1 && (
@@ -209,13 +209,11 @@ function CartPanel({ menu, open, onClose }) {
     unlockAudio()
     setSubmitting(true)
     setError(null)
-    const tableNumber = form.tableNumber.trim()
     const customerName = form.customerName.trim()
-    cart.setDiner({ customerName, tableNumber })
+    cart.setDiner({ customerName })
     try {
       const order = await api.createOrder({
         customerName,
-        tableNumber,
         contact: form.contact,
         note: form.note,
         items: cart.lines.map(({ menuId, qty }) => ({ menuId, qty })),
@@ -272,33 +270,19 @@ function CartPanel({ menu, open, onClose }) {
               <strong>{formatPrice(cart.total)}</strong>
             </div>
 
-            <div className="field-row">
-              <label className="field">
-                <span className="field-label">เลขโต๊ะ</span>
-                <input
-                  className="input num"
-                  required
-                  maxLength={10}
-                  inputMode="numeric"
-                  autoComplete="off"
-                  value={form.tableNumber}
-                  onChange={update('tableNumber')}
-                  placeholder="เช่น 5"
-                />
-              </label>
-              <label className="field">
-                <span className="field-label">ชื่อผู้สั่ง</span>
-                <input
-                  className="input"
-                  required
-                  maxLength={60}
-                  autoComplete="name"
-                  value={form.customerName}
-                  onChange={update('customerName')}
-                  placeholder="เช่น สมชาย"
-                />
-              </label>
-            </div>
+            <label className="field">
+              <span className="field-label">ชื่อผู้สั่ง</span>
+              <input
+                className="input"
+                required
+                maxLength={60}
+                autoComplete="name"
+                value={form.customerName}
+                onChange={update('customerName')}
+                placeholder="เช่น สมชาย"
+              />
+              <span className="field-hint">ใช้เรียกพร้อมเลขคิวตอนมารับอาหาร</span>
+            </label>
             <label className="field">
               <span className="field-label">
                 หมายเหตุถึงครัว <span className="optional">ไม่บังคับ</span>

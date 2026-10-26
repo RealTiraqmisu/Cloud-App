@@ -69,7 +69,6 @@ function OrderGroup({ title, rows, finished = false }) {
                 </div>
                 <div className="order-row-meta">
                   {formatTime(createdAt)} · {formatPrice(total)}
-                  {order?.tableNumber ? ` · โต๊ะ ${order.tableNumber}` : ''}
                 </div>
               </div>
               <div className="order-row-side">

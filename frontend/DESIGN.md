@@ -1,6 +1,6 @@
 ---
 name: ครัวคลาวด์
-description: Dine-in ordering and kitchen display that reads like a Thai eatery's painted wall menu board and queue call-board.
+description: Counter-pickup ordering and kitchen display that reads like a Thai eatery's painted wall menu board and queue call-board.
 colors:
   board: "#163c2d"
   board-raised: "#1e4a39"
@@ -395,7 +395,7 @@ Source of truth: every token above is a custom property on `:root` in `src/index
 
 **Creative North Star: "The Wall Menu Board"**
 
-ครัวคลาวด์ looks like the painted menu board and queue call-board on the wall of a Thai eatery, carried onto the diner's phone and the kitchen tablet. The shell is deep board green; the numbers that matter (queue numbers, totals, counts) are sign yellow painted on that green; the places where people read and choose are plain white sheets on a cool off-white ground. It is a tool for ordering and for cooking, so density is moderate to high and everything reads at a glance: dish rows instead of photo cards, tickets instead of dashboards.
+ครัวคลาวด์ looks like the painted menu board and queue call-board on the wall of a Thai eatery, carried onto the customer's phone and the kitchen tablet. The shell is deep board green; the numbers that matter (queue numbers, totals, counts) are sign yellow painted on that green; the places where people read and choose are plain white sheets on a cool off-white ground. It is a tool for ordering and for cooking, so density is moderate to high and everything reads at a glance: dish rows instead of photo cards, tickets instead of dashboards.
 
 The kitchen is the same board turned all the way up. The whole page goes green, orders are white tickets pinned to it, and queue numbers sit on 76px plates that read from two metres away. Colour carries meaning sparingly: green and yellow are the brand and the "you are here" marks, chili red means stop (sold out, cancel, late), and status colours always travel with an icon and a Thai label.
 
@@ -435,11 +435,11 @@ A two-colour signage palette (board green, sign yellow) over cool neutrals, with
 | PENDING | กำลังส่งเข้าคิว | Send | Slate (#3d4e60) on Slate Wash (#e7ecf1), shared with QUEUED |
 | QUEUED | รอคิว | Clock | Slate on Slate Wash |
 | PREPARING | กำลังทำ | Flame | Order Blue (#164c8c) on Blue Wash (#e1ebf7) |
-| READY | พร้อมเสิร์ฟ | Check | White on solid Leaf Green (#1c7438), the only solid badge |
-| COMPLETED | เสิร์ฟแล้ว | CheckCheck | Spent Grey (#4f5d55) on Grey Wash (#eceeec) |
+| READY | พร้อมรับ | Check | White on solid Leaf Green (#1c7438), the only solid badge |
+| COMPLETED | รับแล้ว | CheckCheck | Spent Grey (#4f5d55) on Grey Wash (#eceeec) |
 | CANCELLED | ยกเลิกแล้ว | Ban | Plum (#82184f) on Plum Wash (#f8e5ee) |
 
-**Deep Leaf** (#145c2c) on **Leaf Wash** (#dcf1e1) is the "served" banner on the tracking page; Plum on Plum Wash is the cancelled banner. **Warning Amber** (#6b4a00) on **Amber Wash** (#fcefc4) marks warn-level kitchen timers, the diner's note on a ticket, and connection warnings. All status pairs measure 5.8:1 to 8.0:1.
+**Deep Leaf** (#145c2c) on **Leaf Wash** (#dcf1e1) is the "picked up" banner on the tracking page; Plum on Plum Wash is the cancelled banner. **Warning Amber** (#6b4a00) on **Amber Wash** (#fcefc4) marks warn-level kitchen timers, the diner's note on a ticket, and connection warnings. All status pairs measure 5.8:1 to 8.0:1.
 
 ### Neutral
 - **Cool Ground** (#f3f5f2): page background on customer and admin pages. Cool grey-green, never cream.
@@ -469,7 +469,7 @@ A two-colour signage palette (board green, sign yellow) over cool neutrals, with
 - **Display** (Anuphan 700, clamp(4rem, 3rem + 5vw, 6rem), line-height 1, -0.02em, tabular): the queue number on the large plate (tracking hero, ready popup). Nothing else uses this size.
 - **Plate numerals** (Anuphan 700, line-height 1, tabular): 3rem on kitchen tickets, 2rem in my-orders rows, 1.5rem for small plates and kitchen column counts.
 - **Headline** (Anuphan 700, clamp(1.625rem, 1.3rem + 1.2vw, 2.125rem), 1.3): one `h1` per page ("เมนูวันนี้", "หน้าจอครัว", tracking headline). `text-wrap: balance`.
-- **Ticket table** (Anuphan 700, 1.75rem, 1.2): "โต๊ะ 12" on kitchen tickets, the second thing a cook reads after the number.
+- **Ticket table** (Anuphan 700, 1.75rem, 1.2): the customer name ("มาลี") on kitchen tickets, the second thing a cook reads after the number. (Class name kept from the earlier dine-in version.)
 - **Title** (Anuphan 700, 1.375rem, 1.3): `h2` such as dialog titles and kitchen column heads.
 - **Title small** (Anuphan 600, 1.125rem, 1.35): `h3` and dish names; also cart and empty-state titles.
 - **Price** (Anuphan 700, 1.125rem, tabular, Board Green): dish prices, formatted `฿60` via `formatPrice`.
@@ -494,7 +494,7 @@ A single centred container (max 1240px, 16px side gutter, 24px top and 48px bott
 - **Menu:** a sticky category tab bar (top 0, on the ground with a bottom hairline; the last tab peeks to show it scrolls), then category sections. Each section is a sign heading over one white sheet of dish rows separated by 1px hairlines, never a grid of floating cards. Dish rows without a photo put name, note, and price on the left and the add button or stepper on the right; with a photo an 88px square thumbnail leads.
 - **Cart:** a sticky 360px panel to the right of the dish list on wide screens; on phones and tablets a fixed green cart bar at the bottom opens a bottom sheet (max height min(88dvh, 760px)).
 - **Tracking:** a main panel (plate, status, headline, four-stop route) plus a 340px receipt panel.
-- **Kitchen:** green page, three columns (คิวใหม่ / กำลังทำ / รอเสิร์ฟ), oldest first; on narrow screens one column with segmented tabs.
+- **Kitchen:** green page, three columns (คิวใหม่ / กำลังทำ / รอรับ), oldest first; on narrow screens one column with segmented tabs.
 - **Admin:** one white list that becomes a six-column table on wide screens.
 
 Density target for the phone menu: at least four dish rows visible above the cart bar at 390px wide. The shipped build shows about 3.6; this is an open item from the finish review.
@@ -510,7 +510,7 @@ Density target for the phone menu: at least four dish rows visible above the car
 | 1024px | Menu gets the sticky cart panel; below 1024px it uses the cart bar and bottom sheet. |
 | 1024–1179px | Dish list returns to one column beside the cart panel. |
 | 1180px | Dish list is two columns again. |
-| 900–1199px | Kitchen ticket header stacks the timer under the table number; from 1200px it sits on the right. |
+| 900–1199px | Kitchen ticket header stacks the timer under the customer name; from 1200px it sits on the right. |
 
 Layering order: sticky category bar 5, cart bar 30, sheet scrim 39, bottom sheet 40, dialogs 60. Safe-area insets are respected on the app bar, cart bar, bottom sheet, and dialogs; `scroll-padding-bottom: 96px` keeps focused fields clear of the cart bar.
 
@@ -541,7 +541,7 @@ Borders are 1px; 2px for the route connector, the route dots, and the kitchen co
 
 ### Buttons
 Painted, solid, and direct. All share `.btn`: 44px minimum height, 0 16px padding, 10px corners, Anuphan 600 at 1rem, 1px border, 160ms colour transitions on `--ease-out`. Disabled is 55% opacity with `not-allowed`.
-- **Primary** (`.btn-primary`): Board Green with Chalk White text; hover Raised Board. The one action per area: "ยืนยันการสั่ง · ฿155", kitchen "เริ่มทำ" / "อาหารพร้อม" / "เสิร์ฟแล้ว", "รับทราบ".
+- **Primary** (`.btn-primary`): Board Green with Chalk White text; hover Raised Board. The one action per area: "ยืนยันการสั่ง · ฿155", kitchen "เริ่มทำ" / "อาหารพร้อม" / "ลูกค้ารับแล้ว", "รับทราบ".
 - **Sign** (`.btn-sign`): Sign Yellow with Sign Ink; hover Lit Sign Yellow. Defined for actions sitting on the board but not used by any screen yet; the cart bar's "ดูตะกร้า" chip carries the same fill.
 - **Secondary** (`.btn`): white with a Strong Hairline border; hover Sunk Counter. The safe choice in dialogs ("ไม่ยกเลิก").
 - **Tint** (`.btn-tint`): Board Wash with Board Green text; the menu's "+ เพิ่ม" and the tracking page's "แจ้งเตือนเมื่ออาหารพร้อม".
@@ -587,7 +587,7 @@ The ป้ายเรียกคิว: a Board Green plate with a 1px Board S
 - **Sibling sign:** menu section headings are painted the same way: Board Green, Sign Yellow text, 6px corners, 4px 12px padding, 1.125rem Anuphan 700. They are the heading itself, not a label above one.
 
 ### Kitchen Ticket
-A white slip pinned to the green board (10px corners, 16px padding, 12px internal gap). Header: kds plate, then the table ("โต๊ะ 12", or "ไม่ระบุโต๊ะ") over "name · สั่ง 19:51", then the waiting timer. Items follow under a hairline in the kitchen line style; the diner's note sits in an Amber Wash box with a MessageSquareText icon. Actions: one large full-width primary button per state (QUEUED → "เริ่มทำ" with Flame, PREPARING → "อาหารพร้อม" with BellRing, READY → "เสิร์ฟแล้ว" with Check). Cancel is only offered on QUEUED: a quiet-danger "ยกเลิกออเดอร์" expands inline to "ไม่ยกเลิก" + a Chili "ยืนยันยกเลิกคิว N" that expires after 5 seconds. PENDING tickets are Raised Board with Chalk White text, no timer, and a spinning LoaderCircle "กำลังรับเข้าคิว…".
+A white slip pinned to the green board (10px corners, 16px padding, 12px internal gap). Header: kds plate, then the customer name ("มาลี") over "สั่ง 19:51", then the waiting timer. Items follow under a hairline in the kitchen line style; the customer's note sits in an Amber Wash box with a MessageSquareText icon. Actions: one large full-width primary button per state (QUEUED → "เริ่มทำ" with Flame, PREPARING → "อาหารพร้อม" with BellRing, READY → "ลูกค้ารับแล้ว" with Check). Cancel is only offered on QUEUED: a quiet-danger "ยกเลิกออเดอร์" expands inline to "ไม่ยกเลิก" + a Chili "ยืนยันยกเลิกคิว N" that expires after 5 seconds. PENDING tickets are Raised Board with Chalk White text, no timer, and a spinning LoaderCircle "กำลังรับเข้าคิว…".
 
 **Waiting timer and ageing thresholds** (`src/constants.js`, refreshed every 30 s):
 | Ticket | Clock starts | Normal | Warn | Late |
@@ -604,10 +604,10 @@ A white slip pinned to the green board (10px corners, 16px padding, 12px interna
 A fixed Board Green bar at the bottom (12px 16px padding plus safe area, upward lift shadow). Inside, one 52px Raised Board button: a ShoppingBag icon, "3 รายการ" over the total in Sign Yellow tabular Anuphan 700, and a Sign Yellow "ดูตะกร้า" chip (40px, 6px corners) with a ChevronUp. It opens the cart as a bottom sheet: white, top corners 10px, Float shadow, a 40×4 Hairline grab handle, sliding up over 320ms on `--ease-out` behind a 45% scrim. From 1024px the same cart is a sticky white panel with no close button.
 
 ### Order Route (tracking)
-A four-stop vertical route (`ROUTE_STOPS`: เข้าคิวแล้ว → กำลังทำ → พร้อมเสิร์ฟ → เสิร์ฟแล้ว), max 560px wide. Dots are 32px circles with a 2px border: done stops fill Board Green with a white check, the current stop fills Sign Yellow with a Board Green border and number and pops in (scale 0.6 to 1 over 600ms), upcoming stops are white with a Strong Hairline border and a Faint Ink number. The 2px connector is Hairline, turning Board Green once passed. Each stop has a Thai sub-line and a tabular time on the right.
+A four-stop vertical route (`ROUTE_STOPS`: เข้าคิวแล้ว → กำลังทำ → พร้อมรับ → รับแล้ว), max 560px wide. Dots are 32px circles with a 2px border: done stops fill Board Green with a white check, the current stop fills Sign Yellow with a Board Green border and number and pops in (scale 0.6 to 1 over 600ms), upcoming stops are white with a Strong Hairline border and a Faint Ink number. The 2px connector is Hairline, turning Board Green once passed. Each stop has a Thai sub-line and a tabular time on the right.
 
 ### Dialogs
-White, 10px corners, 24px padding, Float shadow, 440px wide (560px for the admin editor), sliding up 12px and fading in over 260ms. The safe choice is focused first and on the left; Escape and backdrop click cancel. Actions are right-aligned and wrap in reverse on narrow screens. The ready popup is centred: a 28px BellRing icon, "อาหารพร้อมแล้ว", the large plate labelled "คิว", "พนักงานกำลังนำอาหารไปเสิร์ฟที่โต๊ะ N", and a full-width large "รับทราบ".
+White, 10px corners, 24px padding, Float shadow, 440px wide (560px for the admin editor), sliding up 12px and fading in over 260ms. The safe choice is focused first and on the left; Escape and backdrop click cancel. Actions are right-aligned and wrap in reverse on narrow screens. The ready popup is centred: a 28px BellRing icon, "อาหารพร้อมแล้ว", the large plate labelled "คิว", "มารับที่เคาน์เตอร์ได้เลย แจ้งเลขคิวนี้กับพนักงาน", and a full-width large "รับทราบ".
 
 ### Feedback
 - **Alerts:** 10px corners, 12px 16px padding, 0.9375rem text, an 18px icon. Error: Chili Wash with Chili Pressed text. Warning: Amber Wash with Warning Amber text.
@@ -632,7 +632,7 @@ Lucide (`lucide-react`) only, drawn strokes at default stroke 2 (2.25 for status
 - **Do** mark "you are here" with Sign Yellow on the board: the active nav underline, the selected kitchen tab, the current route stop, the active category count.
 - **Do** keep the kitchen ageing thresholds in `src/constants.js` (10/15 min cooking, 3/5 min ready) and express each level with fill, icon, and text together.
 - **Do** keep demo mode visually identical to production apart from the quiet "โหมดทดลอง" tag.
-- **Do** keep Thai copy in dine-in wording: staff bring food to the table ("พนักงานกำลังนำไปที่โต๊ะ").
+- **Do** keep Thai copy in counter-pickup wording: the customer collects the food at the counter by queue number ("มารับที่เคาน์เตอร์ได้เลย"); never mention tables or serving to a table.
 
 ### Don't:
 - **Don't** put Sign Yellow text on white or on the Cool Ground (1.4–1.6:1); yellow appears only on board green or as a fill under Sign Ink.

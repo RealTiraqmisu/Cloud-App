@@ -15,7 +15,7 @@ THESIS: ครัวคลาวด์ reads like a Thai eatery's painted wall m
 
 OWN-WORLD: Deep board green shell (header band, kitchen board ground) with sign-yellow numerals and primary actions; white working surfaces on a cool off-white ground (never cream); chili red only for sold-out and cancel; status colours slate / blue / leaf green / plum, always with icon + Thai label. Anuphan (bold, loopless) for headings, prices and numbers; IBM Plex Sans Thai Looped for body. Small sign-like corners (6–10px), hairline borders instead of soft shadows, no gradients, no emoji icons.
 
-STORY: The diner scans the board, adds dishes, enters a table number, orders, then watches a mini call-board show their queue number and a four-stop route until staff serve the table. The kitchen reads big yellow numbers on green from two metres away.
+STORY: The customer scans the board, adds dishes, enters a name, orders, then watches a mini call-board show their queue number and a four-stop route until it says to collect the food at the counter. The kitchen reads big yellow numbers on green from two metres away.
 
 FIRST VIEWPORT: Menu on a phone: green header band (name, demo tag), sticky category tabs, dense dish rows (thumb left, name, one-line note, price in board numerals, add button right), sticky bottom green cart bar with item count, yellow total and "ดูตะกร้า". Desktop: dish grid plus a sticky cart panel on the right.
 
@@ -25,4 +25,4 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
 ## Constraints
 
-Keep API shapes (docs/API.md) except the new optional `tableNumber` on create-order. HashRouter routes unchanged. Thai copy, dine-in wording (staff serve to the table).
+Keep API shapes (docs/API.md) unchanged. HashRouter routes unchanged. Thai copy, counter-pickup wording (customer collects at the counter by queue number; no tables).

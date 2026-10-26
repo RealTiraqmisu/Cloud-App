@@ -148,7 +148,7 @@ function resizeImage(file, maxSize) {
   })
 }
 
-export async function createOrder({ customerName, tableNumber = '', contact = '', note = '', items }) {
+export async function createOrder({ customerName, contact = '', note = '', items }) {
   await delay()
   if (!customerName?.trim()) throw new ApiError(400, 'กรุณาใส่ชื่อผู้สั่ง')
   if (!items?.length) throw new ApiError(400, 'ตะกร้าว่าง')
@@ -168,7 +168,6 @@ export async function createOrder({ customerName, tableNumber = '', contact = ''
     orderId: `o-${datePart}-${randomId(4)}`,
     queueNumber: null,
     customerName: customerName.trim(),
-    tableNumber: String(tableNumber ?? '').trim(),
     contact: contact.trim(),
     note: note.trim(),
     items: orderItems,

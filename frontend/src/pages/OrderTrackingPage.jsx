@@ -20,15 +20,15 @@ const HEADLINE = {
   QUEUED: 'ออเดอร์เข้าคิวแล้ว',
   PREPARING: 'ครัวกำลังทำอาหารของคุณ',
   READY: 'อาหารพร้อมแล้ว',
-  COMPLETED: 'เสิร์ฟเรียบร้อย ขอให้อร่อย',
+  COMPLETED: 'รับอาหารแล้ว ขอให้อร่อย',
   CANCELLED: 'ออเดอร์นี้ถูกยกเลิก',
 }
 
 const HINT = {
   PENDING: 'อีกสักครู่จะได้เลขคิว',
   QUEUED: 'รอครัวเริ่มทำ ยกเลิกได้จนกว่าครัวจะเริ่ม',
-  PREPARING: 'อีกไม่นาน พนักงานจะนำอาหารไปที่โต๊ะ',
-  READY: 'พนักงานกำลังนำอาหารไปเสิร์ฟที่โต๊ะของคุณ',
+  PREPARING: 'อาหารพร้อมเมื่อไหร่ หน้านี้จะเด้งเตือนพร้อมเสียง',
+  READY: 'มารับที่เคาน์เตอร์ แจ้งเลขคิวกับพนักงาน',
   COMPLETED: 'อยากสั่งเพิ่ม กลับไปที่เมนูได้เลย',
   CANCELLED: 'ถ้ายกเลิกโดยไม่ได้ตั้งใจ สั่งใหม่ได้จากหน้าเมนู',
 }
@@ -50,17 +50,16 @@ export default function OrderTrackingPage() {
   const closeConfirm = useCallback(() => setConfirmCancel(false), [])
 
   const status = order?.status
-  const table = order?.tableNumber
 
   useEffect(() => {
     if (!status) return
     // Only chime on a live transition, not when opening an already-ready order.
     if (status === 'READY' && prevStatus.current && prevStatus.current !== 'READY') {
       playChime()
-      showBrowserNotification('อาหารพร้อมแล้ว', `คิว ${order.queueNumber ?? '-'} — พนักงานกำลังนำไปเสิร์ฟ${table ? ` โต๊ะ ${table}` : ''}`)
+      showBrowserNotification('อาหารพร้อมแล้ว', `คิว ${order.queueNumber ?? '-'} — มารับที่เคาน์เตอร์ได้เลย`)
     }
     prevStatus.current = status
-  }, [status, order?.queueNumber, table])
+  }, [status, order?.queueNumber])
 
   useEffect(() => {
     const original = document.title
@@ -131,11 +130,6 @@ export default function OrderTrackingPage() {
               <h1 id="tracking-title" className="tracking-title">{HEADLINE[status]}</h1>
               <p className="tracking-hint">{HINT[status]}</p>
               <div className="tracking-meta">
-                {table && (
-                  <span>
-                    โต๊ะ <strong className="num">{table}</strong>
-                  </span>
-                )}
                 <span>
                   คุณ<strong>{order.customerName}</strong>
                 </span>
@@ -244,7 +238,7 @@ export default function OrderTrackingPage() {
             <BellRing size={28} aria-hidden="true" />
             <h2 id="ready-title">อาหารพร้อมแล้ว</h2>
             <QueuePlate number={order.queueNumber} size="lg" label="คิว" />
-            <p>พนักงานกำลังนำอาหารไปเสิร์ฟ{table ? ` ที่โต๊ะ ${table}` : 'ที่โต๊ะของคุณ'}</p>
+            <p>มารับที่เคาน์เตอร์ได้เลย แจ้งเลขคิวนี้กับพนักงาน</p>
             <button type="button" className="btn btn-primary btn-block btn-lg" onClick={() => setReadyDismissed(true)} autoFocus>
               รับทราบ
             </button>
