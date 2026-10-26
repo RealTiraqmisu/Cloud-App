@@ -21,14 +21,7 @@ export function timeAgo(iso, now = Date.now()) {
   return `${Math.floor(mins / 60)} ชม. ${mins % 60} นาทีที่แล้ว`
 }
 
-const CATEGORY_EMOJI = {
-  อาหารจานเดียว: '🍛',
-  เส้น: '🍜',
-  ของทานเล่น: '🍢',
-  เครื่องดื่ม: '🧋',
-  ของหวาน: '🍨',
-}
-
-export function categoryEmoji(category) {
-  return CATEGORY_EMOJI[category] || '🍽️'
+// "ข้าวกะเพรา ×2, ชาไทย" — short one-line summary of an order's items.
+export function itemsSummary(items = []) {
+  return items.map((i) => (i.qty > 1 ? `${i.name} ×${i.qty}` : i.name)).join(', ')
 }

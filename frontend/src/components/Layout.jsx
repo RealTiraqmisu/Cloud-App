@@ -1,46 +1,79 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { ChefHat, CookingPot, NotebookPen, ReceiptText, UtensilsCrossed } from 'lucide-react'
+import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { USE_MOCK } from '../config'
 import { useCart } from '../context/CartContext'
 
 export default function Layout() {
-  const { count, myOrders } = useCart()
+  const { myOrders } = useCart()
+  const { pathname } = useLocation()
+  const isBoard = pathname.startsWith('/kitchen')
+  const isStaff = isBoard || pathname.startsWith('/admin')
   const navClass = ({ isActive }) => `nav-link${isActive ? ' active' : ''}`
 
   return (
-    <div className="app">
-      <header className="topbar">
-        <div className="topbar-inner">
-          <NavLink to="/" className="brand">
-            <span className="brand-mark">🍳</span>
-            <span>ครัวจิ๋ว</span>
-          </NavLink>
-          <nav className="nav">
+    <>
+      <header className={`appbar on-board${isStaff ? '' : ' is-customer'}`}>
+        <div className="appbar-inner">
+          <div className="brand-row">
+            <NavLink to="/" className="brand">
+              <span className="brand-mark" aria-hidden="true">
+                <CookingPot size={20} strokeWidth={2.25} />
+              </span>
+              ครัวคลาวด์
+            </NavLink>
+            {USE_MOCK && (
+              <span className="demo-tag" title="ยังไม่ได้เชื่อม API — ออเดอร์และเมนูเก็บอยู่ในเบราว์เซอร์นี้เท่านั้น">
+                โหมดทดลอง
+              </span>
+            )}
+            <NavLink
+              to="/my-orders"
+              className={({ isActive }) => `orders-shortcut${isActive ? ' active' : ''}`}
+              aria-label={`ออเดอร์ของฉัน${myOrders.length ? ` ${myOrders.length} รายการ` : ''}`}
+            >
+              <ReceiptText size={20} aria-hidden="true" />
+              ออเดอร์
+              {myOrders.length > 0 && <span className="nav-count num">{myOrders.length}</span>}
+            </NavLink>
+          </div>
+          <nav className="nav" aria-label="เมนูหลัก">
             <NavLink to="/" end className={navClass}>
-              สั่งอาหาร{count > 0 && <span className="nav-count">{count}</span>}
+              <UtensilsCrossed size={18} aria-hidden="true" />
+              เมนู
             </NavLink>
             <NavLink to="/my-orders" className={navClass}>
-              ออเดอร์ของฉัน{myOrders.length > 0 && <span className="nav-count muted">{myOrders.length}</span>}
+              <ReceiptText size={18} aria-hidden="true" />
+              ออเดอร์ของฉัน
+              {myOrders.length > 0 && <span className="nav-count">{myOrders.length}</span>}
             </NavLink>
-            <NavLink to="/kitchen" className={navClass}>
-              ครัว
-            </NavLink>
-            <NavLink to="/admin" className={navClass}>
-              จัดการเมนู
-            </NavLink>
+            {isStaff && (
+              <>
+                <span className="nav-divider" aria-hidden="true" />
+                <NavLink to="/kitchen" className={navClass}>
+                  <ChefHat size={18} aria-hidden="true" />
+                  ครัว
+                </NavLink>
+                <NavLink to="/admin" className={navClass}>
+                  <NotebookPen size={18} aria-hidden="true" />
+                  จัดการเมนู
+                </NavLink>
+              </>
+            )}
           </nav>
         </div>
       </header>
 
-      {USE_MOCK && (
-        <div className="mock-banner">
-          โหมดจำลอง — ยังไม่ได้เชื่อม API (ข้อมูลเก็บในเบราว์เซอร์) · ตั้งค่า <code>VITE_API_URL</code> ใน{' '}
-          <code>.env</code> เพื่อใช้ AWS จริง
-        </div>
-      )}
-
-      <main className="container">
+      <main className={isBoard ? 'board-page on-board' : undefined}>
         <Outlet />
       </main>
-    </div>
+
+      {!isStaff && (
+        <footer className="app-foot">
+          <span>สำหรับพนักงาน:</span>
+          <NavLink to="/kitchen">หน้าจอครัว</NavLink>
+          <NavLink to="/admin">จัดการเมนู</NavLink>
+        </footer>
+      )}
+    </>
   )
 }

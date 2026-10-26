@@ -1,19 +1,36 @@
 let audioCtx
 
+function context() {
+  audioCtx ??= new (window.AudioContext || window.webkitAudioContext)()
+  return audioCtx
+}
+
+// Browsers only allow sound after a user gesture: call this from a tap
+// (placing an order, turning kitchen sound on) so the later chime can play.
+export function unlockAudio() {
+  try {
+    const ctx = context()
+    if (ctx.state === 'suspended') ctx.resume()
+  } catch {
+    // Unsupported — the on-screen popup still shows.
+  }
+}
+
 // Short two-tone chime via Web Audio (no sound file needed).
 export function playChime() {
   try {
-    audioCtx ??= new (window.AudioContext || window.webkitAudioContext)()
-    const t = audioCtx.currentTime
+    const ctx = context()
+    if (ctx.state === 'suspended') ctx.resume()
+    const t = ctx.currentTime
     ;[880, 1320].forEach((freq, i) => {
-      const osc = audioCtx.createOscillator()
-      const gain = audioCtx.createGain()
+      const osc = ctx.createOscillator()
+      const gain = ctx.createGain()
       osc.frequency.value = freq
       osc.type = 'sine'
       gain.gain.setValueAtTime(0.0001, t + i * 0.18)
       gain.gain.exponentialRampToValueAtTime(0.25, t + i * 0.18 + 0.02)
       gain.gain.exponentialRampToValueAtTime(0.0001, t + i * 0.18 + 0.35)
-      osc.connect(gain).connect(audioCtx.destination)
+      osc.connect(gain).connect(ctx.destination)
       osc.start(t + i * 0.18)
       osc.stop(t + i * 0.18 + 0.4)
     })

@@ -1,22 +1,32 @@
+import { CupSoda, Drumstick, IceCreamBowl, Soup, Utensils, UtensilsCrossed } from 'lucide-react'
 import { useState } from 'react'
-import { categoryEmoji } from '../utils/format'
 
+const CATEGORY_ICON = {
+  อาหารจานเดียว: UtensilsCrossed,
+  เส้น: Soup,
+  ของทานเล่น: Drumstick,
+  เครื่องดื่ม: CupSoda,
+  ของหวาน: IceCreamBowl,
+}
+
+// Square dish thumbnail. Without a photo, a drawn category icon stands in.
 export default function MenuImage({ item, className = '' }) {
   const [broken, setBroken] = useState(false)
   if (item.imageUrl && !broken) {
     return (
       <img
-        className={`menu-img ${className}`}
+        className={`dish-thumb ${className}`}
         src={item.imageUrl}
-        alt={item.name}
+        alt=""
         loading="lazy"
         onError={() => setBroken(true)}
       />
     )
   }
+  const Icon = CATEGORY_ICON[item.category] ?? Utensils
   return (
-    <div className={`menu-img menu-img-placeholder ${className}`} aria-hidden="true">
-      {categoryEmoji(item.category)}
+    <div className={`dish-thumb thumb-placeholder ${className}`} aria-hidden="true">
+      <Icon size={32} strokeWidth={1.75} />
     </div>
   )
 }

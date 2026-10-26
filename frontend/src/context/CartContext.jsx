@@ -3,10 +3,14 @@ import { useLocalStorage } from '../hooks/useLocalStorage'
 
 const CartContext = createContext(null)
 
+const EMPTY_DINER = { customerName: '', tableNumber: '' }
+
 export function CartProvider({ children }) {
   // Cart keeps name/price only for display; the backend re-reads prices from Menu.
   const [lines, setLines] = useLocalStorage('cart', [])
   const [myOrders, setMyOrders] = useLocalStorage('myOrders', [])
+  // Remember who/where the diner is so a second order is one tap.
+  const [diner, setDiner] = useLocalStorage('diner', EMPTY_DINER)
 
   const value = useMemo(() => {
     const setQty = (menuItem, qty) =>
@@ -29,13 +33,15 @@ export function CartProvider({ children }) {
       setQty,
       add: (menuItem) => setQty(menuItem, (lines.find((l) => l.menuId === menuItem.menuId)?.qty ?? 0) + 1),
       clear: () => setLines([]),
+      diner: { ...EMPTY_DINER, ...diner },
+      setDiner,
       myOrders,
       rememberOrder: (order) =>
         setMyOrders((prev) =>
           [{ orderId: order.orderId, createdAt: order.createdAt, total: order.total }, ...prev].slice(0, 20),
         ),
     }
-  }, [lines, myOrders, setLines, setMyOrders])
+  }, [lines, myOrders, diner, setLines, setMyOrders, setDiner])
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }

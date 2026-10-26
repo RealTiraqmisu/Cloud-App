@@ -39,6 +39,7 @@
   "orderId": "o-20260924-8c1d",
   "queueNumber": 12,
   "customerName": "สมชาย",
+  "tableNumber": "5",
   "contact": "somchai@example.com",
   "note": "ไม่เผ็ด",
   "items": [
@@ -122,12 +123,14 @@ Body
 ```json
 {
   "customerName": "สมชาย",
+  "tableNumber": "5",
   "contact": "somchai@example.com",
   "note": "ไม่เผ็ด",
   "items": [ { "menuId": "m-7f3a", "qty": 2 } ]
 }
 ```
 - required: `customerName`, `items` (อย่างน้อย 1, `qty` ≥ 1)
+- `tableNumber` (string, ไม่บังคับฝั่ง API แต่หน้าเว็บบังคับกรอก) — เลขโต๊ะสำหรับให้พนักงานเสิร์ฟ เก็บลง Order และส่งกลับใน response ทุกตัว (หน้าครัวใช้แสดง "โต๊ะ 5")
 - Lambda ต้องดึงชื่อ/ราคาจาก Menu เอง (ห้ามเชื่อราคาจาก client) และปฏิเสธเมนูที่ `available: false` → `400`
 - บันทึกสถานะ `PENDING` แล้วส่ง `{ "orderId": "..." }` เข้า SQS
 

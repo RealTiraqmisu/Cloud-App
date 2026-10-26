@@ -1,0 +1,1012 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-26T13:09:21Z",
+  "title": "Design System: ครัวคลาวด์",
+  "extensions": {
+    "colorMeta": {
+      "board": {
+        "role": "primary",
+        "displayName": "Board Green",
+        "canonical": "#163c2d",
+        "cssVar": "--board",
+        "tonalRamp": [
+          "#000f08",
+          "#042d1f",
+          "#254b3b",
+          "#456b5a",
+          "#658c7b",
+          "#87b09d",
+          "#abd4c1",
+          "#d0fae6"
+        ]
+      },
+      "board-raised": {
+        "role": "primary",
+        "displayName": "Raised Board",
+        "canonical": "#1e4a39",
+        "cssVar": "--board-raised",
+        "tonalRamp": [
+          "#000f08",
+          "#002d1e",
+          "#204c3b",
+          "#406c59",
+          "#618e7a",
+          "#83b19c",
+          "#a7d6c0",
+          "#cbfbe5"
+        ]
+      },
+      "board-line": {
+        "role": "primary",
+        "displayName": "Board Seam",
+        "canonical": "#2f5b48",
+        "cssVar": "--board-line",
+        "tonalRamp": [
+          "#000f08",
+          "#012d1e",
+          "#1f4c3a",
+          "#406c58",
+          "#618e79",
+          "#83b19b",
+          "#a6d6bf",
+          "#cbfce4"
+        ]
+      },
+      "on-board": {
+        "role": "primary",
+        "displayName": "Chalk White",
+        "canonical": "#f2f5f0",
+        "cssVar": "--on-board",
+        "tonalRamp": [
+          "#0a0c09",
+          "#242622",
+          "#40433f",
+          "#60625e",
+          "#81837f",
+          "#a3a6a1",
+          "#c7cac5",
+          "#edf0eb"
+        ]
+      },
+      "on-board-muted": {
+        "role": "primary",
+        "displayName": "Faded Chalk",
+        "canonical": "#a8c3b4",
+        "cssVar": "--on-board-muted",
+        "tonalRamp": [
+          "#000f07",
+          "#142b1f",
+          "#31483c",
+          "#4f685b",
+          "#70897b",
+          "#92ac9e",
+          "#b6d1c2",
+          "#daf7e7"
+        ]
+      },
+      "board-tint": {
+        "role": "primary",
+        "displayName": "Board Wash",
+        "canonical": "#e2ede6",
+        "cssVar": "--board-tint",
+        "tonalRamp": [
+          "#060d09",
+          "#1f2722",
+          "#3c453f",
+          "#5a645e",
+          "#7b857f",
+          "#9ea8a1",
+          "#c2ccc5",
+          "#e7f2eb"
+        ]
+      },
+      "board-tint-hover": {
+        "role": "primary",
+        "displayName": "Board Wash Pressed",
+        "canonical": "#d2e4d8",
+        "cssVar": "--board-tint-hover",
+        "tonalRamp": [
+          "#030e07",
+          "#1b2920",
+          "#37463d",
+          "#56665b",
+          "#77877c",
+          "#99aa9f",
+          "#bdcec3",
+          "#e2f4e8"
+        ]
+      },
+      "sign": {
+        "role": "secondary",
+        "displayName": "Sign Yellow",
+        "canonical": "#f7c834",
+        "cssVar": "--sign",
+        "tonalRamp": [
+          "#100a00",
+          "#2f2301",
+          "#523f01",
+          "#785e00",
+          "#9f7e06",
+          "#c99f05",
+          "#f2c32c",
+          "#ffedbf"
+        ]
+      },
+      "sign-hover": {
+        "role": "secondary",
+        "displayName": "Lit Sign Yellow",
+        "canonical": "#ffd75a",
+        "cssVar": "--sign-hover",
+        "tonalRamp": [
+          "#100a00",
+          "#2f2401",
+          "#514000",
+          "#765e04",
+          "#9e7f03",
+          "#c7a001",
+          "#edc545",
+          "#ffeebd"
+        ]
+      },
+      "on-sign": {
+        "role": "secondary",
+        "displayName": "Sign Ink",
+        "canonical": "#15231c",
+        "cssVar": "--on-sign",
+        "tonalRamp": [
+          "#030e08",
+          "#1b2922",
+          "#37463e",
+          "#56665d",
+          "#76877e",
+          "#99aaa1",
+          "#bccec4",
+          "#e1f4ea"
+        ]
+      },
+      "chili": {
+        "role": "tertiary",
+        "displayName": "Chili Red",
+        "canonical": "#b3301b",
+        "cssVar": "--chili",
+        "tonalRamp": [
+          "#1e0100",
+          "#4b0600",
+          "#7d1101",
+          "#ad2a15",
+          "#d5513b",
+          "#fe765d",
+          "#ffb4a4",
+          "#ffe9e4"
+        ]
+      },
+      "chili-hover": {
+        "role": "tertiary",
+        "displayName": "Chili Pressed",
+        "canonical": "#962713",
+        "cssVar": "--chili-hover",
+        "tonalRamp": [
+          "#1e0100",
+          "#4a0800",
+          "#7c1401",
+          "#a53622",
+          "#cc5a44",
+          "#f47e66",
+          "#feb4a4",
+          "#fee9e4"
+        ]
+      },
+      "chili-tint": {
+        "role": "tertiary",
+        "displayName": "Chili Wash",
+        "canonical": "#fbe8e4",
+        "cssVar": "--chili-tint",
+        "tonalRamp": [
+          "#130806",
+          "#2f211f",
+          "#4d3e3b",
+          "#6d5d5a",
+          "#8f7e7a",
+          "#b2a09d",
+          "#d7c4c1",
+          "#fdeae6"
+        ]
+      },
+      "ground": {
+        "role": "neutral",
+        "displayName": "Cool Ground",
+        "canonical": "#f3f5f2",
+        "cssVar": "--ground",
+        "tonalRamp": [
+          "#0a0c0a",
+          "#242623",
+          "#414240",
+          "#60625f",
+          "#818380",
+          "#a4a6a3",
+          "#c8cac7",
+          "#edefec"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Sheet White",
+        "canonical": "#ffffff",
+        "cssVar": "--surface",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "surface-sunk": {
+        "role": "neutral",
+        "displayName": "Sunk Counter",
+        "canonical": "#eaeeea",
+        "cssVar": "--surface-sunk",
+        "tonalRamp": [
+          "#090c09",
+          "#232623",
+          "#404340",
+          "#5f625f",
+          "#808380",
+          "#a2a6a2",
+          "#c6cac6",
+          "#ecf0ec"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#d3dbd5",
+        "cssVar": "--line",
+        "tonalRamp": [
+          "#080d09",
+          "#212722",
+          "#3d443f",
+          "#5c635e",
+          "#7d847f",
+          "#a0a7a2",
+          "#c4cbc6",
+          "#e9f1eb"
+        ]
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "Strong Hairline",
+        "canonical": "#8a968f",
+        "cssVar": "--line-strong",
+        "tonalRamp": [
+          "#050d09",
+          "#1e2822",
+          "#3a453f",
+          "#59645e",
+          "#7a867f",
+          "#9ca9a1",
+          "#c0cdc5",
+          "#e5f2eb"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Board Ink",
+        "canonical": "#15231c",
+        "cssVar": "--ink",
+        "tonalRamp": [
+          "#030e08",
+          "#1b2922",
+          "#37463e",
+          "#56665d",
+          "#76877e",
+          "#99aaa1",
+          "#bccec4",
+          "#e1f4ea"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "canonical": "#4f5d55",
+        "cssVar": "--ink-muted",
+        "tonalRamp": [
+          "#040e08",
+          "#1c2822",
+          "#38463e",
+          "#57655d",
+          "#78877e",
+          "#9aa9a0",
+          "#becec4",
+          "#e3f3ea"
+        ]
+      },
+      "ink-faint": {
+        "role": "neutral",
+        "displayName": "Faint Ink",
+        "canonical": "#66736b",
+        "cssVar": "--ink-faint",
+        "tonalRamp": [
+          "#050e08",
+          "#1d2821",
+          "#39453e",
+          "#58655d",
+          "#79867e",
+          "#9ba9a0",
+          "#bfcdc4",
+          "#e4f3ea"
+        ]
+      },
+      "st-queued": {
+        "role": "status",
+        "displayName": "Slate (queued)",
+        "canonical": "#3d4e60",
+        "cssVar": "--st-queued",
+        "tonalRamp": [
+          "#010c1a",
+          "#172636",
+          "#334455",
+          "#526376",
+          "#728498",
+          "#94a7bc",
+          "#b8cce1",
+          "#e3f0fe"
+        ]
+      },
+      "st-queued-tint": {
+        "role": "status",
+        "displayName": "Slate Wash",
+        "canonical": "#e7ecf1",
+        "cssVar": "--st-queued-tint",
+        "tonalRamp": [
+          "#080c0f",
+          "#222529",
+          "#3e4246",
+          "#5d6266",
+          "#7e8387",
+          "#a1a6aa",
+          "#c5cacf",
+          "#eaeff4"
+        ]
+      },
+      "st-preparing": {
+        "role": "status",
+        "displayName": "Order Blue (preparing)",
+        "canonical": "#164c8c",
+        "cssVar": "--st-preparing",
+        "tonalRamp": [
+          "#000a20",
+          "#00244e",
+          "#074180",
+          "#2d62a4",
+          "#4e84c9",
+          "#71a8ef",
+          "#a6ccfe",
+          "#e4f0ff"
+        ]
+      },
+      "st-preparing-tint": {
+        "role": "status",
+        "displayName": "Blue Wash",
+        "canonical": "#e1ebf7",
+        "cssVar": "--st-preparing-tint",
+        "tonalRamp": [
+          "#060c13",
+          "#1e262e",
+          "#3b434c",
+          "#5a626c",
+          "#7a838e",
+          "#9da6b1",
+          "#c0cad6",
+          "#e6f0fc"
+        ]
+      },
+      "st-ready": {
+        "role": "status",
+        "displayName": "Deep Leaf (served banner)",
+        "canonical": "#145c2c",
+        "cssVar": "--st-ready",
+        "tonalRamp": [
+          "#001003",
+          "#012e10",
+          "#015021",
+          "#2d7140",
+          "#519460",
+          "#74b882",
+          "#97dda5",
+          "#c8ffd2"
+        ]
+      },
+      "st-ready-solid": {
+        "role": "status",
+        "displayName": "Leaf Green (ready)",
+        "canonical": "#1c7438",
+        "cssVar": "--st-ready-solid",
+        "tonalRamp": [
+          "#001003",
+          "#002e0f",
+          "#005120",
+          "#1c7438",
+          "#449658",
+          "#68bb7a",
+          "#8de09d",
+          "#c8ffd1"
+        ]
+      },
+      "st-ready-tint": {
+        "role": "status",
+        "displayName": "Leaf Wash",
+        "canonical": "#dcf1e1",
+        "cssVar": "--st-ready-tint",
+        "tonalRamp": [
+          "#020f05",
+          "#19291e",
+          "#36473a",
+          "#546759",
+          "#75887a",
+          "#97ab9c",
+          "#bbcfc0",
+          "#e0f5e5"
+        ]
+      },
+      "st-done": {
+        "role": "status",
+        "displayName": "Spent Grey (served)",
+        "canonical": "#4f5d55",
+        "cssVar": "--st-done",
+        "tonalRamp": [
+          "#040e08",
+          "#1c2822",
+          "#38463e",
+          "#57655d",
+          "#78877e",
+          "#9aa9a0",
+          "#becec4",
+          "#e3f3ea"
+        ]
+      },
+      "st-done-tint": {
+        "role": "status",
+        "displayName": "Grey Wash",
+        "canonical": "#eceeec",
+        "cssVar": "--st-done-tint",
+        "tonalRamp": [
+          "#0a0c0a",
+          "#242524",
+          "#414241",
+          "#606260",
+          "#818381",
+          "#a4a5a4",
+          "#c8cac8",
+          "#edefed"
+        ]
+      },
+      "st-cancelled": {
+        "role": "status",
+        "displayName": "Plum (cancelled)",
+        "canonical": "#82184f",
+        "cssVar": "--st-cancelled",
+        "tonalRamp": [
+          "#1d000d",
+          "#490028",
+          "#780a46",
+          "#9d3466",
+          "#c45787",
+          "#eb7aaa",
+          "#feaecd",
+          "#ffe7ef"
+        ]
+      },
+      "st-cancelled-tint": {
+        "role": "status",
+        "displayName": "Plum Wash",
+        "canonical": "#f8e5ee",
+        "cssVar": "--st-cancelled-tint",
+        "tonalRamp": [
+          "#12070d",
+          "#2e2027",
+          "#4c3d44",
+          "#6c5c64",
+          "#8e7d85",
+          "#b19fa8",
+          "#d6c3cc",
+          "#fbe8f1"
+        ]
+      },
+      "warn": {
+        "role": "status",
+        "displayName": "Warning Amber",
+        "canonical": "#6b4a00",
+        "cssVar": "--warn",
+        "tonalRamp": [
+          "#120900",
+          "#332101",
+          "#583c01",
+          "#7c5a1a",
+          "#9f7c3f",
+          "#c39f62",
+          "#e9c385",
+          "#ffecce"
+        ]
+      },
+      "warn-tint": {
+        "role": "status",
+        "displayName": "Amber Wash",
+        "canonical": "#fcefc4",
+        "cssVar": "--warn-tint",
+        "tonalRamp": [
+          "#100b00",
+          "#2e2401",
+          "#4c411b",
+          "#6c613a",
+          "#8e825a",
+          "#b1a57c",
+          "#d6c99f",
+          "#fbeec3"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display numeral",
+        "purpose": "Queue number on the large call-board plate (tracking hero, ready popup) only."
+      },
+      "numeral-kds": {
+        "displayName": "Kitchen plate numeral",
+        "purpose": "Queue number on kitchen tickets, read from 1-2 m."
+      },
+      "numeral-md": {
+        "displayName": "Plate numeral, medium",
+        "purpose": "Queue number in my-orders rows."
+      },
+      "numeral-sm": {
+        "displayName": "Plate numeral, small",
+        "purpose": "Small plates and kitchen column counts."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "One h1 per page."
+      },
+      "ticket-table": {
+        "displayName": "Ticket table",
+        "purpose": "Table number on kitchen tickets (\"โต๊ะ 12\")."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "h2: dialog titles, kitchen column heads."
+      },
+      "title-sm": {
+        "displayName": "Title small",
+        "purpose": "h3 and dish names; cart and empty-state titles."
+      },
+      "price": {
+        "displayName": "Price",
+        "purpose": "Dish prices and totals in Board Green, tabular."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "All button labels; 1.125rem on large buttons."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Status badges, field labels, nav counts, table heads."
+      },
+      "kitchen-line": {
+        "displayName": "Kitchen line",
+        "purpose": "Ordered items on kitchen tickets."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default reading text; root line-height 1.65."
+      },
+      "body-sm": {
+        "displayName": "Body small",
+        "purpose": "Dish descriptions, alerts, tracking meta."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Hints, meta lines, footer. The 14px floor."
+      }
+    },
+    "shadows": [
+      {
+        "name": "float",
+        "value": "0 8px 24px -6px rgb(21 35 28 / 22%), 0 2px 6px rgb(21 35 28 / 10%)",
+        "cssVar": "--shadow-float",
+        "purpose": "Phone bottom sheet and dialogs: layers that float over the page."
+      },
+      {
+        "name": "cart-bar-lift",
+        "value": "0 -4px 16px rgb(21 35 28 / 18%)",
+        "purpose": "Fixed bottom cart bar, casting upward."
+      },
+      {
+        "name": "plate-edge",
+        "value": "inset 0 0 0 1px var(--board-line)",
+        "purpose": "Painted 1px edge on every call-board plate."
+      },
+      {
+        "name": "dish-divider",
+        "value": "0 0 0 1px var(--line)",
+        "purpose": "Dish row outline that fills the 1px grid gap to draw the sheet dividers."
+      },
+      {
+        "name": "input-focus-ring",
+        "value": "0 0 0 3px var(--board-tint-hover)",
+        "purpose": "Input focus, paired with a Board Green border."
+      },
+      {
+        "name": "shortcut-active",
+        "value": "inset 0 -3px 0 var(--sign)",
+        "purpose": "Active phone \"ออเดอร์\" shortcut underline."
+      },
+      {
+        "name": "switch-thumb",
+        "value": "0 1px 2px rgb(0 0 0 / 25%)",
+        "purpose": "Switch thumb."
+      },
+      {
+        "name": "scrim-sheet",
+        "value": "rgb(21 35 28 / 45%)",
+        "purpose": "Backdrop behind the bottom sheet (background, not a shadow)."
+      },
+      {
+        "name": "scrim-dialog",
+        "value": "rgb(21 35 28 / 55%)",
+        "purpose": "Backdrop behind dialogs (background, not a shadow)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "cssVar": "--ease-out",
+        "purpose": "The only easing curve."
+      },
+      {
+        "name": "state",
+        "value": "160ms",
+        "purpose": "Colour, border and background changes on buttons, inputs, nav links, rows."
+      },
+      {
+        "name": "switch",
+        "value": "200ms",
+        "purpose": "Switch track colour and thumb slide."
+      },
+      {
+        "name": "scrim",
+        "value": "240ms",
+        "purpose": "Bottom-sheet scrim fade."
+      },
+      {
+        "name": "dialog-in",
+        "value": "260ms",
+        "purpose": "Dialog rises 12px and fades in."
+      },
+      {
+        "name": "sheet",
+        "value": "320ms",
+        "purpose": "Bottom sheet slides up from translateY(105%)."
+      },
+      {
+        "name": "stop-arrive",
+        "value": "600ms",
+        "purpose": "Current route stop scales 0.6 to 1."
+      },
+      {
+        "name": "plate-call",
+        "value": "700ms",
+        "purpose": "Ready-popup plate scales 0.85 to 1."
+      },
+      {
+        "name": "spin",
+        "value": "900ms linear infinite",
+        "purpose": "LoaderCircle spinners."
+      },
+      {
+        "name": "skeleton-pulse",
+        "value": "1.2s ease-in-out infinite alternate",
+        "purpose": "Skeleton opacity 1 to 0.45."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "1ms",
+        "purpose": "prefers-reduced-motion: every animation and transition collapses to 1ms."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "phone-narrow",
+        "value": "480px",
+        "query": "(max-width: 480px)",
+        "purpose": "My-orders row: badge under items, chevron hidden."
+      },
+      {
+        "name": "phone",
+        "value": "600px",
+        "query": "(min-width: 600px)",
+        "purpose": "Tracking plate beside text (below: horizontal strip); dialogs centred (below: bottom-anchored)."
+      },
+      {
+        "name": "dish-2col",
+        "value": "720px",
+        "query": "(min-width: 720px)",
+        "purpose": "Dish list two columns."
+      },
+      {
+        "name": "appbar",
+        "value": "840px",
+        "query": "(min-width: 840px)",
+        "purpose": "One-row app bar, 64px nav links, customer nav visible; admin table layout."
+      },
+      {
+        "name": "split",
+        "value": "900px",
+        "query": "(min-width: 900px)",
+        "purpose": "Tracking two columns; kitchen three columns, tabs hidden."
+      },
+      {
+        "name": "cart-panel",
+        "value": "1024px",
+        "query": "(min-width: 1024px)",
+        "purpose": "Sticky 360px cart panel; below: cart bar + bottom sheet. Dish list one column until 1179px."
+      },
+      {
+        "name": "dish-2col-wide",
+        "value": "1180px",
+        "query": "(min-width: 1180px)",
+        "purpose": "Dish list two columns beside the cart panel."
+      },
+      {
+        "name": "kds-ticket-row",
+        "value": "1200px",
+        "query": "(min-width: 1200px)",
+        "purpose": "Kitchen ticket header back to one row (900-1199px stacks the timer)."
+      }
+    ],
+    "kitchenAgeing": {
+      "source": "src/constants.js",
+      "refresh": "30s",
+      "levels": [
+        {
+          "tickets": "QUEUED, PREPARING",
+          "clockStarts": "createdAt",
+          "warnMinutes": 10,
+          "lateMinutes": 15
+        },
+        {
+          "tickets": "READY",
+          "clockStarts": "time marked READY",
+          "warnMinutes": 3,
+          "lateMinutes": 5
+        }
+      ],
+      "states": {
+        "normal": {
+          "component": "ticket-age",
+          "icon": "Clock"
+        },
+        "warn": {
+          "component": "ticket-age-warn",
+          "icon": "Hourglass",
+          "extra": "outline: 1px solid currentColor"
+        },
+        "late": {
+          "component": "ticket-age-late",
+          "icon": "TriangleAlert",
+          "extra": "visually hidden \"เกินเวลา\""
+        }
+      }
+    },
+    "statusMap": {
+      "PENDING": {
+        "label": "กำลังส่งเข้าคิว",
+        "icon": "Send",
+        "component": "badge-queued"
+      },
+      "QUEUED": {
+        "label": "รอคิว",
+        "icon": "Clock",
+        "component": "badge-queued"
+      },
+      "PREPARING": {
+        "label": "กำลังทำ",
+        "icon": "Flame",
+        "component": "badge-preparing"
+      },
+      "READY": {
+        "label": "พร้อมเสิร์ฟ",
+        "icon": "Check",
+        "component": "badge-ready"
+      },
+      "COMPLETED": {
+        "label": "เสิร์ฟแล้ว",
+        "icon": "CheckCheck",
+        "component": "badge-completed"
+      },
+      "CANCELLED": {
+        "label": "ยกเลิกแล้ว",
+        "icon": "Ban",
+        "component": "badge-cancelled"
+      }
+    },
+    "zIndex": {
+      "category-bar": 5,
+      "cart-bar": 30,
+      "sheet-scrim": 39,
+      "bottom-sheet": 40,
+      "dialog": 60
+    },
+    "fonts": {
+      "ui": {
+        "family": "Anuphan Variable",
+        "package": "@fontsource-variable/anuphan",
+        "files": "wght.css (variable weight axis)"
+      },
+      "body": {
+        "family": "IBM Plex Sans Thai Looped",
+        "package": "@fontsource/ibm-plex-sans-thai-looped",
+        "files": "thai + latin subsets at 400, 500, 600"
+      }
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one action per area: order submit, kitchen state moves, \"รับทราบ\". Large (52px) and full width on tickets and the cart.",
+      "html": "<div class=\"ds-row\"><button class=\"ds-btn ds-btn-primary\">ยืนยันการสั่ง · ฿155</button><button class=\"ds-btn ds-btn-primary ds-btn-lg\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4\"/></svg>เริ่มทำ</button></div>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); min-height: var(--tap); padding: 0 var(--space-4); border-radius: var(--r-md); border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); font-family: var(--font-ui); font-weight: 600; font-size: var(--fs-md); line-height: 1.2; cursor: pointer; white-space: nowrap; transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out), color 160ms var(--ease-out); } .ds-btn:focus-visible { outline: 2px solid var(--board); outline-offset: 2px; } .ds-btn:disabled { opacity: 0.55; cursor: not-allowed; } .ds-row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; } .ds-btn-primary { background: var(--board); border-color: var(--board); color: var(--on-board); } .ds-btn-primary:hover { background: var(--board-raised); border-color: var(--board-raised); } .ds-btn-lg { min-height: 52px; font-size: var(--fs-lg); }"
+    },
+    {
+      "name": "Tint Add Button",
+      "kind": "button",
+      "refersTo": "button-tint",
+      "description": "Soft board-green action on white: the menu's \"+ เพิ่ม\" and the tracking page's notification opt-in.",
+      "html": "<button class=\"ds-btn ds-btn-tint\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"M12 5v14\"/></svg>เพิ่ม</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); min-height: var(--tap); padding: 0 var(--space-4); border-radius: var(--r-md); border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); font-family: var(--font-ui); font-weight: 600; font-size: var(--fs-md); line-height: 1.2; cursor: pointer; white-space: nowrap; transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out), color 160ms var(--ease-out); } .ds-btn:focus-visible { outline: 2px solid var(--board); outline-offset: 2px; } .ds-btn:disabled { opacity: 0.55; cursor: not-allowed; } .ds-btn-tint { background: var(--board-tint); border-color: transparent; color: var(--board); } .ds-btn-tint:hover { background: var(--board-tint-hover); }"
+    },
+    {
+      "name": "Quiet Danger Button",
+      "kind": "button",
+      "refersTo": "button-danger-quiet",
+      "description": "First step of a cancel: chili text, chili wash on hover. The confirm step uses the solid chili button.",
+      "html": "<div class=\"ds-row\"><button class=\"ds-btn ds-btn-danger-quiet\">ยกเลิกออเดอร์</button><button class=\"ds-btn\">ไม่ยกเลิก</button><button class=\"ds-btn ds-btn-danger\">ยืนยันยกเลิกคิว 42</button></div>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); min-height: var(--tap); padding: 0 var(--space-4); border-radius: var(--r-md); border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); font-family: var(--font-ui); font-weight: 600; font-size: var(--fs-md); line-height: 1.2; cursor: pointer; white-space: nowrap; transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out), color 160ms var(--ease-out); } .ds-btn:focus-visible { outline: 2px solid var(--board); outline-offset: 2px; } .ds-btn:disabled { opacity: 0.55; cursor: not-allowed; } .ds-row { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; } .ds-btn:hover { background: var(--surface-sunk); } .ds-btn-danger-quiet { background: transparent; border-color: transparent; color: var(--chili); } .ds-btn-danger-quiet:hover { background: var(--chili-tint); } .ds-btn-danger { background: var(--chili); border-color: var(--chili); color: var(--surface); } .ds-btn-danger:hover { background: var(--chili-hover); border-color: var(--chili-hover); }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "White field with a strong hairline; focus turns the border board green with a 3px board-wash ring.",
+      "html": "<div class=\"ds-field-row\"><label class=\"ds-field\"><span class=\"ds-field-label\">เลขโต๊ะ</span><input class=\"ds-input ds-num\" inputmode=\"numeric\" placeholder=\"เช่น 5\"></label><label class=\"ds-field\"><span class=\"ds-field-label\">ชื่อผู้สั่ง</span><input class=\"ds-input\" placeholder=\"เช่น สมชาย\"></label></div><label class=\"ds-field\"><span class=\"ds-field-label\">หมายเหตุถึงครัว <span class=\"ds-optional\">ไม่บังคับ</span></span><textarea class=\"ds-input\" rows=\"2\" placeholder=\"เช่น ไม่เผ็ด ไม่ใส่ผักชี\"></textarea></label>",
+      "css": ".ds-field-row { display: grid; grid-template-columns: 7.5rem 1fr; gap: var(--space-3); } .ds-field { display: grid; gap: 6px; margin-bottom: var(--space-4); } .ds-field-label { font-family: var(--font-ui); font-weight: 600; font-size: var(--fs-sm); display: flex; justify-content: space-between; gap: var(--space-2); color: var(--ink); } .ds-optional { font-weight: 400; color: var(--ink-muted); } .ds-input { box-sizing: border-box; width: 100%; min-height: var(--tap); padding: 10px var(--space-3); border: 1px solid var(--line-strong); border-radius: var(--r-md); background: var(--surface); color: var(--ink); font-family: var(--font-body); font-size: var(--fs-md); line-height: 1.5; transition: border-color 160ms var(--ease-out), box-shadow 160ms var(--ease-out); } .ds-input::placeholder { color: var(--ink-faint); } .ds-input:hover { border-color: var(--ink-muted); } .ds-input:focus-visible { outline: none; border-color: var(--board); box-shadow: 0 0 0 3px var(--board-tint-hover); } textarea.ds-input { resize: vertical; min-height: 72px; } .ds-num { font-family: var(--font-ui); font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Category Tabs",
+      "kind": "chip",
+      "refersTo": "category-tab",
+      "description": "Sticky menu filter. Selected tab is painted board green with a sign-yellow count.",
+      "html": "<div class=\"ds-tabs\" role=\"group\" aria-label=\"เลือกหมวดหมู่\"><button class=\"ds-tab\" aria-pressed=\"true\">ทั้งหมด <span class=\"ds-tab-count\">7</span></button><button class=\"ds-tab\" aria-pressed=\"false\">อาหารจานเดียว <span class=\"ds-tab-count\">2</span></button><button class=\"ds-tab\" aria-pressed=\"false\">เส้น <span class=\"ds-tab-count\">2</span></button></div>",
+      "css": ".ds-tabs { display: flex; gap: var(--space-2); flex-wrap: wrap; } .ds-tab { display: inline-flex; align-items: center; gap: 6px; min-height: var(--tap); padding: 0 14px; border-radius: var(--r-sm); border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); font-family: var(--font-ui); font-weight: 500; font-size: var(--fs-md); cursor: pointer; white-space: nowrap; } .ds-tab:hover { border-color: var(--board); } .ds-tab:focus-visible { outline: 2px solid var(--board); outline-offset: 2px; } .ds-tab[aria-pressed='true'] { background: var(--board); border-color: var(--board); color: var(--on-board); font-weight: 600; } .ds-tab-count { font-size: var(--fs-xs); font-variant-numeric: tabular-nums; color: var(--ink-muted); } .ds-tab[aria-pressed='true'] .ds-tab-count { color: var(--sign); }"
+    },
+    {
+      "name": "Status Badges",
+      "kind": "chip",
+      "refersTo": "badge-queued",
+      "description": "Order status: always Lucide icon + Thai label; READY is the only solid badge.",
+      "html": "<div class=\"ds-badges\"><span class=\"ds-badge ds-badge-queued\"><svg width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z\"/><path d=\"m21.854 2.147-10.94 10.939\"/></svg>กำลังส่งเข้าคิว</span><span class=\"ds-badge ds-badge-queued\"><svg width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 6v6l4 2\"/></svg>รอคิว</span><span class=\"ds-badge ds-badge-preparing\"><svg width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4\"/></svg>กำลังทำ</span><span class=\"ds-badge ds-badge-ready\"><svg width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20 6 9 17l-5-5\"/></svg>พร้อมเสิร์ฟ</span><span class=\"ds-badge ds-badge-completed\"><svg width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M18 6 7 17l-5-5\"/><path d=\"m22 10-7.5 7.5L13 16\"/></svg>เสิร์ฟแล้ว</span><span class=\"ds-badge ds-badge-cancelled\"><svg width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M4.929 4.929 19.07 19.071\"/></svg>ยกเลิกแล้ว</span></div>",
+      "css": ".ds-badges { display: flex; flex-wrap: wrap; gap: var(--space-2); } .ds-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px 4px 8px; border-radius: var(--r-sm); font-family: var(--font-ui); font-size: var(--fs-xs); font-weight: 600; line-height: 1.3; white-space: nowrap; } .ds-badge-queued { background: var(--st-queued-tint); color: var(--st-queued); } .ds-badge-preparing { background: var(--st-preparing-tint); color: var(--st-preparing); } .ds-badge-ready { background: var(--st-ready-solid); color: var(--surface); } .ds-badge-completed { background: var(--st-done-tint); color: var(--st-done); } .ds-badge-cancelled { background: var(--st-cancelled-tint); color: var(--st-cancelled); }"
+    },
+    {
+      "name": "App Bar",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Board-green band: sign-yellow brand mark, quiet demo tag, chalk links with a 3px sign-yellow active bar.",
+      "html": "<header class=\"ds-appbar\"><a class=\"ds-brand\" href=\"#\"><span class=\"ds-brand-mark\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M2 12h20\"/><path d=\"M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8\"/><path d=\"m4 8 16-4\"/><path d=\"m8.86 6.78-.45-1.81a2 2 0 0 1 1.45-2.43l1.94-.48a2 2 0 0 1 2.43 1.46l.45 1.8\"/></svg></span>ครัวคลาวด์</a><span class=\"ds-demo-tag\">โหมดทดลอง</span><nav class=\"ds-nav\" aria-label=\"เมนูหลัก\"><a class=\"ds-nav-link is-active\" href=\"#\" aria-current=\"page\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m16 2-2.3 2.3a3 3 0 0 0 0 4.2l1.8 1.8a3 3 0 0 0 4.2 0L22 8\"/><path d=\"M15 15 3.3 3.3a4.2 4.2 0 0 0 0 6l7.3 7.3c.7.7 2 .7 2.8 0L15 15Zm0 0 7 7\"/><path d=\"m2.1 21.8 6.4-6.3\"/><path d=\"m19 5-7 7\"/></svg>เมนู</a><a class=\"ds-nav-link\" href=\"#\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M13 16H8\"/><path d=\"M14 8H8\"/><path d=\"M16 12H8\"/><path d=\"M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z\"/></svg>ออเดอร์ของฉัน<span class=\"ds-nav-count\">3</span></a></nav></header>",
+      "css": ".ds-appbar { display: flex; align-items: center; gap: var(--space-3); padding: 0 var(--space-4); background: var(--board); color: var(--on-board); } .ds-brand { display: inline-flex; align-items: center; gap: var(--space-2); min-height: var(--tap); color: var(--on-board); text-decoration: none; font-family: var(--font-ui); font-weight: 700; font-size: var(--fs-xl); } .ds-brand-mark { width: 32px; height: 32px; border-radius: var(--r-sm); background: var(--sign); color: var(--board); display: grid; place-items: center; } .ds-demo-tag { font-family: var(--font-ui); font-size: var(--fs-xs); font-weight: 600; line-height: 1; padding: 5px 6px; border-radius: var(--r-sm); border: 1px solid var(--on-board-muted); color: var(--on-board-muted); } .ds-nav { display: flex; gap: var(--space-1); margin-left: auto; } .ds-nav-link { position: relative; display: inline-flex; align-items: center; gap: 6px; padding: 0 var(--space-3); min-height: 64px; color: var(--on-board-muted); text-decoration: none; font-family: var(--font-ui); font-weight: 500; white-space: nowrap; transition: color 160ms var(--ease-out); } .ds-nav-link:hover { color: var(--on-board); } .ds-nav-link:focus-visible { outline: 2px solid var(--sign); outline-offset: -2px; } .ds-nav-link.is-active { color: var(--on-board); font-weight: 600; } .ds-nav-link.is-active::after { content: ''; position: absolute; left: var(--space-3); right: var(--space-3); bottom: 0; height: 3px; border-radius: 3px 3px 0 0; background: var(--sign); } .ds-nav-count { font-size: var(--fs-xs); font-weight: 700; line-height: 1; min-width: 22px; padding: 4px 6px; border-radius: var(--r-sm); background: var(--board-raised); color: var(--on-board); text-align: center; }"
+    },
+    {
+      "name": "Call-Board Plate",
+      "kind": "custom",
+      "refersTo": "plate-lg",
+      "description": "Signature ป้ายเรียกคิว: every queue number is sign-yellow tabular Anuphan on a board-green plate with a 1px seam. Sizes sm / md / kds / lg; empty shows \"–\".",
+      "html": "<div class=\"ds-plates\"><span class=\"ds-plate ds-plate-sm\" aria-label=\"คิว 7\">7</span><span class=\"ds-plate ds-plate-md\" aria-label=\"คิว 41\">41</span><span class=\"ds-plate ds-plate-kds\" aria-label=\"คิว 42\">42</span><div class=\"ds-plate ds-plate-lg\"><span class=\"ds-plate-label\">คิวของคุณ</span><span class=\"ds-plate-number\">41</span></div><span class=\"ds-plate ds-plate-md ds-plate-empty\" aria-label=\"ยังไม่ได้เลขคิว\">–</span></div>",
+      "css": ".ds-plates { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; } .ds-plate { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; background: var(--board); color: var(--sign); border-radius: var(--r-md); font-family: var(--font-ui); font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; box-shadow: inset 0 0 0 1px var(--board-line); } .ds-plate-sm { min-width: 52px; height: 52px; padding: 0 var(--space-2); font-size: 1.5rem; } .ds-plate-md { min-width: 64px; height: 56px; padding: 0 var(--space-3); font-size: 2rem; } .ds-plate-kds { min-width: 84px; height: 76px; padding: 0 var(--space-3); font-size: 3rem; } .ds-plate-lg { min-width: 160px; padding: var(--space-4) var(--space-5) var(--space-5); gap: var(--space-2); } .ds-plate-label { font-size: var(--fs-sm); font-weight: 500; color: var(--on-board-muted); } .ds-plate-number { font-size: clamp(4rem, 3rem + 5vw, 6rem); letter-spacing: -0.02em; } .ds-plate-empty { color: var(--on-board-muted); }"
+    },
+    {
+      "name": "Kitchen Ticket",
+      "kind": "card",
+      "refersTo": "ticket",
+      "description": "White slip on the green board: kds plate, table, ageing timer (normal / warn / late), items, diner note, one large state action.",
+      "html": "<div class=\"ds-board\"><article class=\"ds-ticket\" aria-label=\"คิว 38\"><div class=\"ds-ticket-head\"><span class=\"ds-plate\">38</span><div class=\"ds-ticket-who\"><div class=\"ds-ticket-table\">โต๊ะ 2</div><div class=\"ds-ticket-name\">ณัฐ · สั่ง 19:27</div></div><span class=\"ds-age ds-age-late\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3\"/><path d=\"M12 9v4\"/><path d=\"M12 17h.01\"/></svg>31 นาที<span class=\"ds-vh\">เกินเวลา</span></span></div><ul class=\"ds-ticket-items\"><li><span class=\"ds-qty\">2×</span><span>ข้าวกะเพราหมูสับไข่ดาว</span></li><li><span class=\"ds-qty\">1×</span><span>ชาไทยเย็น</span></li></ul><div class=\"ds-ticket-note\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z\"/><path d=\"M7 11h10\"/><path d=\"M7 15h6\"/><path d=\"M7 7h8\"/></svg><span>ไม่เผ็ด ไม่ใส่ผักชี</span></div><button class=\"ds-ticket-action\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M10.268 21a2 2 0 0 0 3.464 0\"/><path d=\"M22 8c0-2.3-.8-4.3-2-6\"/><path d=\"M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326\"/><path d=\"M4 2C2.8 3.7 2 5.7 2 8\"/></svg>อาหารพร้อม</button></article><div class=\"ds-ages\"><span class=\"ds-age\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 6v6l4 2\"/></svg>7 นาที</span><span class=\"ds-age ds-age-warn\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 22h14\"/><path d=\"M5 2h14\"/><path d=\"M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22\"/><path d=\"M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2\"/></svg>พร้อมมา 4 นาที</span></div></div>",
+      "css": ".ds-board { background: var(--board); padding: var(--space-4); border-radius: var(--r-md); display: grid; gap: var(--space-3); max-width: 420px; } .ds-ticket { background: var(--surface); color: var(--ink); border-radius: var(--r-lg); padding: var(--space-4); display: grid; gap: var(--space-3); } .ds-ticket-head { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: var(--space-1) var(--space-3); align-items: center; } .ds-plate { display: inline-flex; align-items: center; justify-content: center; min-width: 84px; height: 76px; padding: 0 var(--space-3); background: var(--board); color: var(--sign); border-radius: var(--r-md); box-shadow: inset 0 0 0 1px var(--board-line); font-family: var(--font-ui); font-weight: 700; font-size: 3rem; line-height: 1; font-variant-numeric: tabular-nums; } .ds-ticket-table { font-family: var(--font-ui); font-weight: 700; font-size: 1.75rem; line-height: 1.2; } .ds-ticket-name { font-size: var(--fs-sm); color: var(--ink-muted); } .ds-age { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: var(--r-sm); font-family: var(--font-ui); font-weight: 700; font-size: var(--fs-md); font-variant-numeric: tabular-nums; background: var(--surface-sunk); color: var(--ink); white-space: nowrap; justify-self: start; } .ds-age-warn { outline: 1px solid currentColor; background: var(--warn-tint); color: var(--warn); } .ds-age-late { background: var(--chili); color: var(--surface); } .ds-ages { display: flex; gap: var(--space-2); flex-wrap: wrap; } .ds-vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; } .ds-ticket-items { list-style: none; margin: 0; padding: var(--space-3) 0 0; border-top: 1px solid var(--line); display: grid; gap: var(--space-2); font-family: var(--font-body); font-size: 1.25rem; line-height: 1.45; } .ds-ticket-items li { display: grid; grid-template-columns: 2.5rem 1fr; } .ds-qty { font-family: var(--font-ui); font-weight: 700; font-variant-numeric: tabular-nums; } .ds-ticket-note svg { flex: none; margin-top: 4px; } .ds-ticket-note { display: flex; gap: var(--space-2); align-items: flex-start; padding: var(--space-2) var(--space-3); border-radius: var(--r-sm); background: var(--warn-tint); color: var(--warn); font-weight: 500; } .ds-ticket-action { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); min-height: 52px; border-radius: var(--r-md); border: 1px solid var(--board); background: var(--board); color: var(--on-board); font-family: var(--font-ui); font-weight: 600; font-size: var(--fs-lg); cursor: pointer; transition: background-color 160ms var(--ease-out); } .ds-ticket-action:hover { background: var(--board-raised); border-color: var(--board-raised); } .ds-ticket-action:focus-visible { outline: 2px solid var(--sign); outline-offset: 2px; }"
+    },
+    {
+      "name": "Cart Bar",
+      "kind": "custom",
+      "refersTo": "cart-bar",
+      "description": "Phone/tablet (below 1024px) fixed bottom bar: count, sign-yellow total, \"ดูตะกร้า\" chip that opens the bottom sheet.",
+      "html": "<div class=\"ds-cart-bar\"><button class=\"ds-cart-bar-button\" aria-haspopup=\"dialog\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M16 10a4 4 0 0 1-8 0\"/><path d=\"M3.103 6.034h17.794\"/><path d=\"M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z\"/></svg><span><span class=\"ds-cart-count\">3 รายการ</span><br><span class=\"ds-cart-total\">฿155</span></span><span class=\"ds-cart-cta\">ดูตะกร้า<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m18 15-6-6-6 6\"/></svg></span></button></div>",
+      "css": ".ds-cart-bar { display: flex; padding: var(--space-3) var(--space-4); background: var(--board); color: var(--on-board); box-shadow: 0 -4px 16px rgb(21 35 28 / 18%); } .ds-cart-bar-button { flex: 1; display: flex; align-items: center; gap: var(--space-3); min-height: 52px; padding: 0 var(--space-2) 0 var(--space-4); border: 0; border-radius: var(--r-md); background: var(--board-raised); color: var(--on-board); font-family: var(--font-ui); font-size: var(--fs-md); line-height: 1.3; cursor: pointer; text-align: left; } .ds-cart-bar-button:focus-visible { outline: 2px solid var(--sign); outline-offset: 2px; } .ds-cart-count { font-weight: 600; } .ds-cart-total { font-weight: 700; font-size: var(--fs-lg); color: var(--sign); font-variant-numeric: tabular-nums; } .ds-cart-cta { margin-left: auto; display: inline-flex; align-items: center; gap: 4px; min-height: 40px; padding: 0 var(--space-3); border-radius: var(--r-sm); background: var(--sign); color: var(--on-sign); font-weight: 700; transition: background-color 160ms var(--ease-out); } .ds-cart-bar-button:hover .ds-cart-cta { background: var(--sign-hover); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Wall Menu Board",
+    "overview": "ครัวคลาวด์ looks like the painted menu board and queue call-board on the wall of a Thai eatery, carried onto the diner's phone and the kitchen tablet. The shell is deep board green; the numbers that matter (queue numbers, totals, counts) are sign yellow painted on that green; the places where people read and choose are plain white sheets on a cool off-white ground. It is a tool for ordering and for cooking, so density is moderate to high and everything reads at a glance: dish rows instead of photo cards, tickets instead of dashboards.\n\nThe kitchen is the same board turned all the way up. The whole page goes green, orders are white tickets pinned to it, and queue numbers sit on 76px plates that read from two metres away. Colour carries meaning sparingly: green and yellow are the brand and the \"you are here\" marks, chili red means stop (sold out, cancel, late), and status colours always travel with an icon and a Thai label.\n\nConfirmed rejections from the approved direction: the orange photo-card delivery-app clone, the dark neon \"cloud\" dashboard, cream or warm-paper grounds, gradients, and emoji icons.",
+    "keyCharacteristics": [
+      "Board green shell and sign-yellow numerals; white working surfaces on a cool off-white ground.",
+      "One signature: the call-board plate (ป้ายเรียกคิว). Every queue number sits on it.",
+      "Flat and hairlined; a shadow appears only on a layer that floats over the page.",
+      "Small sign-like corners: 6px for small signs, 10px for controls and containers.",
+      "Two Thai faces: Anuphan for voice and numbers, IBM Plex Sans Thai Looped for reading.",
+      "Thai-first copy, 44px touch targets, WCAG AA contrast on every text pairing."
+    ],
+    "rules": [
+      {
+        "name": "The Board-and-Sign Rule",
+        "body": "Sign yellow lives on board green, or as a fill carrying Sign Ink. Yellow text on white or on the ground measures 1.4–1.6:1 and is never used.",
+        "section": "colors"
+      },
+      {
+        "name": "The Chili-Means-Stop Rule",
+        "body": "Chili red is reserved for sold out, cancel/destructive actions, errors, and late kitchen tickets. It is never decoration and never a brand accent.",
+        "section": "colors"
+      },
+      {
+        "name": "The Never-Colour-Alone Rule",
+        "body": "Every status colour travels with its Lucide icon and its Thai label (`StatusBadge`, kitchen timers, banners). A colour swatch on its own is not a status.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two-Voice Rule",
+        "body": "Anuphan speaks (headings, buttons, labels, numbers); Plex Thai Looped reads (sentences). Weight 700 belongs to Anuphan only; Plex is loaded at 400/500/600 and must not be set bold.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Numeral Rule",
+        "body": "Every number that changes (queue numbers, prices, totals, counts, quantities, times, minutes) is set in Anuphan with `tabular-nums`. Use the `.num` utility for numbers inside body text.",
+        "section": "typography"
+      },
+      {
+        "name": "The 14px Floor Rule",
+        "body": "No Thai text below 0.875rem (14px). Thai tone marks and vowels stack; smaller sizes break legibility.",
+        "section": "typography"
+      },
+      {
+        "name": "The Hairline Rule",
+        "body": "Cards, panels, tickets, and dish sheets are flat at rest with a 1px hairline (or a tone change on the board). A shadow means \"this layer floats over the page\"; nothing else earns one.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do render every queue number through `QueuePlate`: Sign Yellow (#f7c834) Anuphan numerals on a Board Green (#163c2d) plate with the 1px Board Seam inset edge.",
+      "Do pair every status colour with its Lucide icon and Thai label exactly as in the status table (`StatusBadge`, `STATUS_LABEL`).",
+      "Do use the custom properties from `src/index.css` (`var(--board)`, `var(--r-md)`, `var(--space-4)`) in new CSS instead of literal values.",
+      "Do set prices, counts, quantities, times, and queue numbers in Anuphan with `tabular-nums` (`.num`).",
+      "Do keep every touch target at least 44px (`--tap`) and kitchen ticket actions at 52px, full width.",
+      "Do separate content with 1px Hairline (#d3dbd5) borders and tone changes; reserve `--shadow-float` for the bottom sheet and dialogs.",
+      "Do mark \"you are here\" with Sign Yellow on the board: the active nav underline, the selected kitchen tab, the current route stop, the active category count.",
+      "Do keep the kitchen ageing thresholds in `src/constants.js` (10/15 min cooking, 3/5 min ready) and express each level with fill, icon, and text together.",
+      "Do keep demo mode visually identical to production apart from the quiet \"โหมดทดลอง\" tag.",
+      "Do keep Thai copy in dine-in wording: staff bring food to the table (\"พนักงานกำลังนำไปที่โต๊ะ\")."
+    ],
+    "donts": [
+      "Don't put Sign Yellow text on white or on the Cool Ground (1.4–1.6:1); yellow appears only on board green or as a fill under Sign Ink.",
+      "Don't use Chili Red for anything except sold out, cancel/destructive actions, errors, and late timers.",
+      "Don't show a status by colour alone, or invent a new status colour outside the slate / blue / leaf / grey / plum set.",
+      "Don't use a cream or warm-paper ground; the ground is Cool Ground (#f3f5f2).",
+      "Don't add gradients, glows, or soft drop shadows to cards, panels, tickets, or dish rows.",
+      "Don't build the menu as orange-accented photo cards, or turn the kitchen into a dark neon dashboard.",
+      "Don't round rectangles beyond 10px; circles are only for route dots and the switch.",
+      "Don't introduce a third typeface, a system display face, or bold (700) Plex Thai Looped.",
+      "Don't set Thai text below 0.875rem (14px).",
+      "Don't use emoji or Unicode symbols as icons; use Lucide.",
+      "Don't add kicker or eyebrow labels above headings; in this world the heading is itself the sign."
+    ]
+  }
+}

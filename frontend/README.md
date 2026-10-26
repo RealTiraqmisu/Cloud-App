@@ -8,12 +8,29 @@ API ที่ใช้: [`../docs/API.md`](../docs/API.md)
 | URL | หน้า |
 |---|---|
 | `#/` | เมนู + ตะกร้า + สั่งอาหาร |
-| `#/order/<orderId>` | ติดตามสถานะ (polling ทุก 4 วิ, popup + เสียงเมื่อ `READY`) |
+| `#/order/<orderId>` | ติดตามสถานะ (polling ทุก 4 วิ, popup + เสียงเมื่อ `READY` — พนักงานนำไปเสิร์ฟที่โต๊ะ) |
 | `#/my-orders` | ออเดอร์ที่สั่งจากเบราว์เซอร์นี้ |
-| `#/kitchen` | หน้าจอครัว 3 คอลัมน์ (คิวใหม่ / กำลังทำ / พร้อมเสิร์ฟ) |
+| `#/kitchen` | หน้าจอครัว 3 คอลัมน์ (คิวใหม่ / กำลังทำ / รอเสิร์ฟ) |
 | `#/admin` | เพิ่ม/แก้/ลบเมนู, อัปโหลดรูป, เปิด-ปิดเมนูที่หมด |
 
 ใช้ `HashRouter` (`/#/kitchen`) เพื่อให้เปิดลิงก์ตรงบน S3 static website ได้โดยไม่ต้องตั้ง rewrite
+
+## หน้าตา (Design)
+
+ธีม "ป้ายร้านเขียนมือ": แถบสีเขียวกระดานเมนู + ตัวเลขสีเหลืองป้าย บนพื้นสีขาว — ออกแบบด้วย [impeccable](https://impeccable.style)
+
+| ไฟล์ | ใช้ทำอะไร |
+|---|---|
+| `DESIGN.md` | ระบบดีไซน์ทั้งหมด: สี (hex), ฟอนต์, ขนาด, มุมโค้ง, component, กฎห้าม/ควรทำ — **อ่านก่อนแก้ UI** |
+| `PRODUCT.md` | ผู้ใช้ งาน และข้อจำกัดของระบบ (ร้านนั่งทานในร้าน พนักงานเสิร์ฟที่โต๊ะ) |
+| `.impeccable/` | ข้อมูลสำหรับ impeccable (design tokens + direction ของหน้า) |
+| `src/index.css` | token สีทั้งหมดอยู่ใน `:root` บนสุดของไฟล์ |
+
+- ฟอนต์ self-host ผ่าน npm (ไม่ต้องโหลดจาก Google Fonts): **Anuphan** (หัวข้อ ปุ่ม ราคา ตัวเลข) + **IBM Plex Sans Thai Looped** (เนื้อหา)
+- ไอคอนใช้ `lucide-react` อย่างเดียว ห้ามใช้ emoji แทนไอคอน
+- เลขคิวแสดงด้วย `<QueuePlate>` (ตัวเลขเหลืองบนป้ายเขียว) ทุกหน้า
+- ฟอร์มสั่งอาหารมีช่อง **เลขโต๊ะ** → ส่งไปเป็น `tableNumber` ใน `POST /orders` (ดู `../docs/API.md`)
+- รองรับมือถือ (ตะกร้าเป็นแถบล่าง + bottom sheet), แท็บเล็ต (หน้าครัวสลับคอลัมน์เป็นแท็บ < 900px) และคอม
 
 ## รันบนเครื่อง
 
@@ -29,6 +46,7 @@ npm run dev        # http://localhost:5173
 - เปิด 2 แท็บ: `#/` (ลูกค้า) กับ `#/kitchen` (ครัว) แล้วลองสั่ง → ข้อมูลแชร์กันข้ามแท็บ
 - จำลอง SQS: ออเดอร์ `PENDING` จะกลายเป็น `QUEUED` + ได้เลขคิวเองหลัง ~2.5 วินาที
 - ล้างข้อมูลจำลอง: DevTools → Application → Local Storage → ลบ key ที่ขึ้นต้นด้วย `mock.`
+- ไม่ได้ใช้โหมดทดลองแล้ว: แถบ "โหมดทดลอง" บนหัวเว็บจะหายไปเองเมื่อมี `VITE_API_URL`
 
 ### ต่อกับ AWS จริง
 
@@ -68,10 +86,10 @@ src/
 │   ├── http.js       ← เรียก API Gateway จริง
 │   └── mock.js       ← backend จำลอง (กฎเดียวกับ Lambda)
 ├── pages/            ← MenuPage, OrderTrackingPage, MyOrdersPage, KitchenPage, AdminPage
-├── components/       ← Layout, StatusBadge, MenuImage, QtyStepper
-├── context/          ← CartContext (ตะกร้า + ออเดอร์ของฉัน)
+├── components/       ← Layout, QueuePlate (ป้ายเลขคิว), StatusBadge, MenuImage, QtyStepper, ConfirmDialog
+├── context/          ← CartContext (ตะกร้า + ออเดอร์ของฉัน + ชื่อ/เลขโต๊ะที่ใช้ล่าสุด)
 ├── hooks/            ← usePolling, useLocalStorage
 ├── utils/            ← format (ราคา/เวลา), notify (เสียง + browser notification)
-├── constants.js      ← สถานะและลำดับการเปลี่ยน (ต้องตรงกับ Lambda)
+├── constants.js      ← สถานะ ลำดับการเปลี่ยน (ต้องตรงกับ Lambda) และเกณฑ์เวลาเตือนในครัว
 └── config.js         ← VITE_API_URL, ระยะ polling
 ```
